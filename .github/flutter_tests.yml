@@ -1,0 +1,41 @@
+name: Flutter Tests
+
+on:
+  push:
+    branches:
+      - master
+      - development
+  pull_request:
+    branches:
+      - master
+      - development
+
+jobs:
+  flutter_tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [android, ios]
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up the Flutter environment
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Step 4: Run Flutter unit and widget tests
+      - name: Run Flutter tests
+        run: flutter test
+
+      # Step 5: Run Flutter integration tests
+      - name: Run Flutter integration tests
+        run: flutter drive --target=test_driver/app.dart
