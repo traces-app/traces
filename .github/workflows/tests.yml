@@ -62,4 +62,5 @@ jobs:
         run: flutter pub get
       
       - name: Check Dart Code Formatting
-        run: dart format --dry-run --set-exit-if-changed .
+        run: dart format --output=none --set-exit-if-changed .
+        
