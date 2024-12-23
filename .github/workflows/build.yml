@@ -12,6 +12,7 @@ on:
 
 jobs:
   build-android:
+    name: Build Android APK
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
