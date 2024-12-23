@@ -61,5 +61,5 @@ jobs:
       - name: Install Dependencies
         run: flutter pub get
       
-      - name: Check Flutter Format
-        run: flutter format --dry-run --set-exit-if-changed .
+      - name: Check Dart Code Formatting
+        run: dart format --dry-run --set-exit-if-changed .
