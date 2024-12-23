@@ -35,3 +35,31 @@ jobs:
 
       - name: Run Tests
         run: flutter test
+
+
+  Formatting:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Cache Flutter Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.pub-cache
+          key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-flutter-
+
+      - name: Install Dependencies
+        run: flutter pub get
+      
+      - name: Check Flutter Format
+        run: flutter format --dry-run --set-exit-if-changed .
