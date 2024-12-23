@@ -16,13 +16,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Flutter
+      - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: 'stable'  # You can specify a different Flutter version if needed.
+          channel: 'stable'
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: flutter pub get
 
-      - name: Run tests
+      - name: Run Tests
         run: flutter test
