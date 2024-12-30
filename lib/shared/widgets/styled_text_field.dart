@@ -9,13 +9,17 @@ class StyledTextField extends StatefulWidget {
 }
 
 class _StyledTextFieldState extends State<StyledTextField> {
-  bool _enabledClearOptions = false;
   final TextEditingController _textEditingController = TextEditingController();
+
+  bool _enabledClearOptions = false;
+  bool _matched = false;
 
   handleOnChange(String value) {
     if (value.isNotEmpty) {
       setState(() {
+        _matched = false;
         _enabledClearOptions = true;
+        _matched = value == "aa";
       });
     } else {
       setState(() {
@@ -87,22 +91,56 @@ class _StyledTextFieldState extends State<StyledTextField> {
                         suffixIcon: AnimatedOpacity(
                           duration: const Duration(milliseconds: 150),
                           opacity: _enabledClearOptions ? 1.0 : 0.0,
-                          child: GestureDetector(
-                            behavior: HitTestBehavior.translucent,
-                            onTap: () {
-                              _textEditingController.clear();
-                              setState(() {
-                                _enabledClearOptions = false;
-                              });
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 2),
-                              child: Icon(
-                                CupertinoIcons.clear_circled_solid,
-                                size: 19,
-                                color: Colors.white.withOpacity(0.3),
+                          child: Wrap(
+                            alignment: WrapAlignment.center,
+                            runAlignment: WrapAlignment.center,
+                            children: [
+                              GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onTap: () {
+                                  _textEditingController.clear();
+                                  setState(() {
+                                    _enabledClearOptions = false;
+                                  });
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      right: 3, bottom: 1),
+                                  child: Icon(
+                                    CupertinoIcons.clear_circled_solid,
+                                    size: 19,
+                                    color: Colors.white.withOpacity(0.3),
+                                  ),
+                                ),
                               ),
-                            ),
+                              AnimatedSwitcher(
+                                duration: const Duration(milliseconds: 400),
+                                switchInCurve: Curves.ease,
+                                transitionBuilder: (
+                                  Widget child,
+                                  Animation<double> animation,
+                                ) {
+                                  return SizeTransition(
+                                    sizeFactor: animation,
+                                    axis: Axis.horizontal,
+                                    axisAlignment:
+                                        -1.0, // Align animation direction
+                                    child: child,
+                                  );
+                                },
+                                child: _matched
+                                    ? Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 14, right: 15),
+                                        child: Icon(
+                                          CupertinoIcons.checkmark,
+                                          size: 19,
+                                          color: Colors.green.withOpacity(0.8),
+                                        ),
+                                      )
+                                    : const SizedBox.shrink(),
+                              ),
+                            ],
                           ),
                         )),
                     style: const TextStyle(
