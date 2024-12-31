@@ -2,7 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StyledTextField extends StatefulWidget {
-  const StyledTextField({super.key});
+  const StyledTextField({
+    super.key,
+    required this.placeholder,
+    this.type = "text", // "text" (default) | "email" | "password" | "number"
+    this.focused = false,
+    this.compare,
+  });
+
+  // required initial state
+  final String placeholder;
+  final String type;
+  final bool focused;
+  final String? compare;
 
   @override
   State<StyledTextField> createState() => _StyledTextFieldState();
@@ -14,12 +26,25 @@ class _StyledTextFieldState extends State<StyledTextField> {
   bool _enabledClearOptions = false;
   bool _matched = false;
 
+  TextInputType _getKeyboardType() {
+    switch (widget.type.toLowerCase()) {
+      case "email":
+        return TextInputType.emailAddress;
+      case "number":
+        return TextInputType.number;
+      case "text":
+      case "password":
+      default:
+        return TextInputType.text;
+    }
+  }
+
   handleOnChange(String value) {
     if (value.isNotEmpty) {
       setState(() {
         _matched = false;
         _enabledClearOptions = true;
-        _matched = value == "aa";
+        if (widget.compare != null) _matched = widget.compare == value;
       });
     } else {
       setState(() {
@@ -57,14 +82,16 @@ class _StyledTextFieldState extends State<StyledTextField> {
                   ),
                 ),
                 TextField(
-                    keyboardType: TextInputType.emailAddress,
+                    keyboardType: _getKeyboardType(),
                     keyboardAppearance: Brightness.dark,
                     autocorrect: false,
-                    autofocus: true,
+                    enableSuggestions: true,
+                    autofocus: widget.focused,
                     cursorWidth: 3,
                     cursorColor: Colors.white,
+                    obscureText: widget.type.toLowerCase() == "password",
                     decoration: InputDecoration(
-                        hintText: "user@example.com",
+                        hintText: widget.placeholder,
                         hintStyle: const TextStyle(
                           color: Colors.white70,
                         ),
