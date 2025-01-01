@@ -25,6 +25,14 @@ class _StyledTextFieldState extends State<StyledTextField> {
 
   bool _enabledClearOptions = false;
   bool _matched = false;
+  bool _obscureText = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _enabledClearOptions = widget.type.toLowerCase() == "password";
+    _obscureText = widget.type.toLowerCase() == "password";
+  }
 
   TextInputType _getKeyboardType() {
     switch (widget.type.toLowerCase()) {
@@ -48,7 +56,9 @@ class _StyledTextFieldState extends State<StyledTextField> {
       });
     } else {
       setState(() {
-        _enabledClearOptions = false;
+        if (widget.type != "password") {
+          _enabledClearOptions = false;
+        }
       });
     }
   }
@@ -89,7 +99,7 @@ class _StyledTextFieldState extends State<StyledTextField> {
                     autofocus: widget.focused,
                     cursorWidth: 3,
                     cursorColor: Colors.white,
-                    obscureText: widget.type.toLowerCase() == "password",
+                    obscureText: _obscureText,
                     decoration: InputDecoration(
                         hintText: widget.placeholder,
                         hintStyle: const TextStyle(
@@ -122,24 +132,56 @@ class _StyledTextFieldState extends State<StyledTextField> {
                             alignment: WrapAlignment.center,
                             runAlignment: WrapAlignment.center,
                             children: [
-                              GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () {
-                                  _textEditingController.clear();
-                                  setState(() {
-                                    _enabledClearOptions = false;
-                                  });
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 3, bottom: 1),
-                                  child: Icon(
-                                    CupertinoIcons.clear_circled_solid,
-                                    size: 19,
-                                    color: Colors.white.withOpacity(0.3),
-                                  ),
-                                ),
-                              ),
+                              widget.type.toLowerCase() != "password"
+                                  ? Container(
+                                      color: Colors.transparent,
+                                      child: GestureDetector(
+                                        behavior: HitTestBehavior.translucent,
+                                        onTap: () {
+                                          _textEditingController.clear();
+                                          setState(() {
+                                            _enabledClearOptions = false;
+                                          });
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 3, bottom: 1),
+                                          child: Icon(
+                                            CupertinoIcons.clear_circled_solid,
+                                            size: 19,
+                                            color:
+                                                Colors.white.withOpacity(0.3),
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  : GestureDetector(
+                                      behavior: HitTestBehavior.translucent,
+                                      onTap: () {
+                                        if (widget.type.toLowerCase() ==
+                                            "password") {
+                                          setState(() {
+                                            _obscureText = !_obscureText;
+                                          });
+                                        } else {
+                                          _textEditingController.clear();
+                                          setState(() {
+                                            _enabledClearOptions = false;
+                                          });
+                                        }
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 3, bottom: 1),
+                                        child: Icon(
+                                          _obscureText
+                                              ? CupertinoIcons.eye_slash_fill
+                                              : CupertinoIcons.eye_fill,
+                                          size: 20,
+                                          color: Colors.white.withOpacity(0.5),
+                                        ),
+                                      ),
+                                    ),
                               AnimatedSwitcher(
                                 duration: const Duration(milliseconds: 400),
                                 switchInCurve: Curves.ease,
