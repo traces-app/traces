@@ -1,8 +1,13 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:traces/core/utils/app_icons.dart';
 import 'package:traces/pages/authentication/authentication.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:traces/pages/authentication/cubit/activity_indicator_cubit.dart';
 import 'package:traces/shared/widgets/styled_text_field.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -14,7 +19,8 @@ class AuthenticationPage extends StatefulWidget {
 }
 
 class _AuthenticationPageState extends State<AuthenticationPage> {
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn =
+      GoogleSignIn(); // TODO: Configure Google Authentication Properly
 
   @override
   Widget build(BuildContext context) {
@@ -39,33 +45,50 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
             focused: true,
           ),
         ),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.only(top: 38.0),
-          child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.white.withOpacity(0.9),
-              foregroundColor: Colors.black,
-              padding: const EdgeInsets.symmetric(
-                horizontal: 20.0,
-                vertical: 11,
-              ),
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.circular(18),
+        BlocBuilder<ActivityIndicatorCubit, bool>(builder: (context, state) {
+          return Container(
+            width: double.infinity,
+            padding: const EdgeInsets.only(top: 38.0),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white.withOpacity(0.9),
+                foregroundColor: Colors.black,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 11,
+                ),
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(18),
+                  ),
                 ),
               ),
-            ),
-            child: const Text(
-              "Continue",
-              style: TextStyle(
-                fontSize: 20.0,
-                fontWeight: FontWeight.w600,
+              child: const Text(
+                "Continue",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
+              onPressed: () {
+                context.read<ActivityIndicatorCubit>().toggle();
+                Timer(
+                  const Duration(seconds: 3),
+                  () {
+                    // manual 3 seconds waiting
+                    context.read<ActivityIndicatorCubit>().toggle();
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const PasswordPage(),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
-            onPressed: () {},
-          ),
-        ),
+          );
+        }),
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: Divider(
