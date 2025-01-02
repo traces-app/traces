@@ -8,6 +8,7 @@ class StyledTextField extends StatefulWidget {
     this.type = "text", // "text" (default) | "email" | "password" | "number"
     this.focused = false,
     this.compare,
+    this.onSubmitted,
   });
 
   // required initial state
@@ -15,6 +16,7 @@ class StyledTextField extends StatefulWidget {
   final String type;
   final bool focused;
   final String? compare;
+  final void Function(String)? onSubmitted;
 
   @override
   State<StyledTextField> createState() => _StyledTextFieldState();
@@ -97,6 +99,7 @@ class _StyledTextFieldState extends State<StyledTextField> {
                     autocorrect: false,
                     enableSuggestions: true,
                     autofocus: widget.focused,
+                    onSubmitted: widget.onSubmitted,
                     cursorWidth: 3,
                     cursorColor: Colors.white,
                     obscureText: _obscureText,

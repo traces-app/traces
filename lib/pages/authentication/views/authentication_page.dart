@@ -37,14 +37,32 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 21.0),
-          child: StyledTextField(
-            type: "email",
-            placeholder: "user@example.com",
-            focused: true,
-          ),
-        ),
+        BlocBuilder<ActivityIndicatorCubit, bool>(builder: (context, state) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 21.0),
+            child: StyledTextField(
+              type: "email",
+              placeholder: "user@example.com",
+              focused: true,
+              onSubmitted: (value) {
+                context.read<ActivityIndicatorCubit>().toggle();
+                Timer(
+                  const Duration(seconds: 3),
+                  () {
+                    // manual 3 seconds waiting
+                    context.read<ActivityIndicatorCubit>().toggle();
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const PasswordPage(),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
+          );
+        }),
         BlocBuilder<ActivityIndicatorCubit, bool>(builder: (context, state) {
           return Container(
             width: double.infinity,
