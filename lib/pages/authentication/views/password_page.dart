@@ -75,6 +75,36 @@ class PasswordPage extends StatelessWidget {
                         ),
                       ),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                            builder: (context) => const CreateAccountPage(),
+                          ),
+                        );
+                      },
+                      style: const ButtonStyle(
+                        padding: WidgetStatePropertyAll(
+                          EdgeInsets.all(10),
+                        ),
+                        backgroundColor: WidgetStatePropertyAll(Colors.white12),
+                      ),
+                      child: const Text(
+                        "Create Account",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 17,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
