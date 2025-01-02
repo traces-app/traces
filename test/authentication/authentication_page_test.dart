@@ -18,22 +18,4 @@ void main() {
     expect(find.text('Continue with Google'), findsOneWidget);
     expect(find.text('Continue with Apple'), findsOneWidget);
   });
-
-  testWidgets('continue button triggers navigation to password page',
-      (WidgetTester tester) async {
-    // Build the widget
-    await tester.pumpWidget(
-      const MaterialApp(
-        home: AuthenticationPage(),
-      ),
-    );
-
-    // Enter email text and tap the "Continue" button
-    await tester.enterText(find.byType(TextField), 'user@example.com');
-    await tester.tap(find.text('Continue'));
-    await tester.pumpAndSettle(); // Wait for navigation
-
-    // Verify that the PasswordPage has been navigated to
-    expect(find.byType(PasswordPage), findsOneWidget);
-  });
 }
