@@ -133,7 +133,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
             ),
             icon: Padding(
               padding: const EdgeInsets.only(right: 5.0),
-              child: SvgPicture.asset(AppIcons.google),
+              child: Opacity(
+                opacity: 0.9,
+                child: SvgPicture.asset(AppIcons.google),
+              ),
             ),
             label: const Text(
               "Continue with Google",
@@ -202,7 +205,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
             ),
             icon: Padding(
               padding: const EdgeInsets.only(right: 5.0),
-              child: SvgPicture.asset(AppIcons.apple),
+              child: Opacity(
+                opacity: 0.9,
+                child: SvgPicture.asset(AppIcons.apple),
+              ),
             ),
             label: const Text(
               "Continue with Apple",
