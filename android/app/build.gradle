@@ -85,7 +85,7 @@ android {
     namespace = "com.example.traces"
     compileSdk = 34 // Replace with the latest stable SDK version (e.g., 33)
 
-    ndkVersion = "21.4.7075529" // Update this if necessary, or remove if unused
+    ndkVersion = "25.1.8937393" // Update this if necessary, or remove if unused
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
