@@ -1,3 +1,4 @@
+/*
 plugins {
     id "com.android.application"
     // START: FlutterFire Configuration
@@ -58,3 +59,66 @@ flutter {
 }
 
 apply plugin: 'com.google.gms.google-services'
+*/
+
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.google.gms.google-services' // Firebase plugin
+}
+
+dependencies {
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
+
+    // Add Firebase Analytics
+    implementation 'com.google.firebase:firebase-analytics'
+
+    // Add any other Firebase dependencies you need
+    // e.g., for Authentication, Firestore, etc.
+    // implementation 'com.google.firebase:firebase-auth'
+    // implementation 'com.google.firebase:firebase-firestore'
+}
+
+android {
+    namespace = "com.example.traces"
+    compileSdk = 34 // Replace with the latest stable SDK version (e.g., 33)
+
+    ndkVersion = "21.4.7075529" // Update this if necessary, or remove if unused
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    defaultConfig {
+        applicationId = "com.example.traces"
+        minSdk = 23 // Update this to meet the Firebase plugin requirements
+        targetSdk = 34 // Match this with the `compileSdk` version
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            signingConfig = signingConfigs.debug
+        }
+    }
+
+    packagingOptions {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+apply plugin: 'com.google.gms.google-services' // Firebase plugin
