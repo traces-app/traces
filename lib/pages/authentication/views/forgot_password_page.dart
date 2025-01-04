@@ -26,7 +26,7 @@ class ForgotPasswordPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => const VerificationPage(),
+                            builder: (context) => const PasswordPage(),
                           ),
                         );
                       },

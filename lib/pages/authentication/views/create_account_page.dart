@@ -26,7 +26,7 @@ class CreateAccountPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           CupertinoPageRoute(
-                            builder: (context) => const PasswordPage(),
+                            builder: (context) => const ForgotPasswordPage(),
                           ),
                         );
                       },
