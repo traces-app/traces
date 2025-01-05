@@ -9,6 +9,7 @@
 .history
 .svn/
 migrate_working_dir/
+.vscode/
 
 # IntelliJ related
 *.iml
@@ -76,6 +77,8 @@ app.*.map.json
 **/ios/Flutter/flutter_assets/
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/build/
+**/ios/Podfile.lock
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3
@@ -89,3 +92,7 @@ linux/
 macos/
 web/
 windows/
+
+
+# Generated Files
+pubspec.lock

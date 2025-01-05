@@ -2,11 +2,11 @@ name: Flutter
 
 on:
   push:
-    branches: 
-      - "*"
+    branches:
+      - "**"
   pull_request:
     branches:
-      - "*"
+      - "**"
 
 jobs:
   Tests:
@@ -19,7 +19,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
 
       - name: Cache Flutter Dependencies
         uses: actions/cache@v3
@@ -36,7 +36,6 @@ jobs:
       - name: Run Tests
         run: flutter test
 
-
   Formatting:
     runs-on: ubuntu-latest
 
@@ -47,7 +46,7 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: 'stable'
+          channel: "stable"
 
       - name: Cache Flutter Dependencies
         uses: actions/cache@v3
@@ -60,7 +59,6 @@ jobs:
 
       - name: Install Dependencies
         run: flutter pub get
-      
+
       - name: Check Dart Code Formatting
         run: dart format --output=none --set-exit-if-changed .
-        
