@@ -7,51 +7,136 @@ class CreateAccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AuthenticationLayout(
-      children: [
-        Center(
-          child: Column(
-            children: [
-              const Text(
-                "Enter Personal Information",
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.w500),
+    return Scaffold(
+      backgroundColor: Colors.black, // Setting background to black as per the wireframe
+      body: Stack(
+        children: [
+          // Back Button at the top-right corner
+          Positioned(
+            top: 20,
+            right: 20,
+            child: IconButton(
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.white.withOpacity(0.7),
+                size: 24,
               ),
-              const SizedBox(height: 20),
-              Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                            builder: (context) => const ForgotPasswordPage(),
-                          ),
-                        );
-                      },
-                      style: const ButtonStyle(
-                        padding: WidgetStatePropertyAll(EdgeInsets.all(10)),
-                        backgroundColor: WidgetStatePropertyAll(
-                          Color.fromARGB(213, 255, 255, 255),
-                        ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 60),  // Increased height to accommodate back button
+                const Text(
+                  "Enter Your Personal Information",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w600, // Semi-bold title
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 40),
+                TextField(
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600, // Applying semi-bold weight for input text
+                  ),
+                  decoration: InputDecoration(
+                    hintText: "First Name",  // Use hintText instead of labelText
+                    hintStyle: const TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w600, 
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                        width: 2.0,  // Set the border width when not focused
                       ),
-                      child: const Text(
-                        "Continue",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 17,
-                          color: Colors.black,
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.blue,
+                        width: 2.0,  // Set a thicker border width when focused
+                      ),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextField(
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600, // Applying semi-bold weight for input text
+                  ),
+                  decoration: InputDecoration(
+                    hintText: "Last Name",  // Use hintText instead of labelText
+                    hintStyle: const TextStyle(
+                      color: Colors.grey,
+                      fontWeight: FontWeight.w600,  // Applying semi-bold weight for hint
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.grey,
+                        width: 2.0,  // Set the border width
+                      ),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        color: Colors.blue,
+                        width: 2.0,  // Set a thicker border width when focused
+                      ),
+                      borderRadius: BorderRadius.circular(18),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 40),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (context) => const ForgotPasswordPage(),
                         ),
+                      );
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.grey[300],
+                      foregroundColor: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                    ),
+                    child: const Text(
+                      "Continue",
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600, // Semi-bold button text
                       ),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
+}
+
+void main() {
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: CreateAccountPage(),
+  ));
 }
