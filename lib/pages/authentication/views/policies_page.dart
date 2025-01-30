@@ -41,8 +41,8 @@ class _PoliciesPageState extends State<PoliciesPage> {
               SizedBox(height: 10),
               Text(
                 "Thank you for signing up! Before creating your account, "
-                    "please review the following summary of our key terms and policies. "
-                    "By continuing, you agree to these terms.",
+                "please review the following summary of our key terms and policies. "
+                "By continuing, you agree to these terms.",
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.white70,
@@ -123,7 +123,7 @@ class _PoliciesPageState extends State<PoliciesPage> {
 
         // Checkbox and Agreement
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -165,7 +165,6 @@ class _PoliciesPageState extends State<PoliciesPage> {
           ),
         ),
 
-
         const SizedBox(height: 15),
 
         // Create Account Button
@@ -174,12 +173,12 @@ class _PoliciesPageState extends State<PoliciesPage> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _isChecked
-                    ? () {}
-                    : null,
+                onPressed: _isChecked ? () {} : null,
                 style: ElevatedButton.styleFrom(
                   padding: const EdgeInsets.all(15),
-                  backgroundColor: _isChecked ? Colors.white : Colors.white24, // Dim button if disabled
+                  backgroundColor: _isChecked
+                      ? Colors.white
+                      : Colors.white24, // Dim button if disabled
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
@@ -190,14 +189,15 @@ class _PoliciesPageState extends State<PoliciesPage> {
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 17,
-                    color: _isChecked ? Colors.black : Colors.white38, // Dim text when disabled
+                    color: _isChecked
+                        ? Colors.black
+                        : Colors.white38, // Dim text when disabled
                   ),
                 ),
               ),
             ),
           ],
         ),
-
 
         const SizedBox(height: 30),
       ],
