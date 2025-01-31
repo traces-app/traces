@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:traces/pages/authentication/layouts/layout.dart';
 import 'package:traces/shared/widgets/styled_text_field.dart';
+import 'package:traces/pages/authentication/views/policies_page.dart';
 
 class CreateAccountPage extends StatelessWidget {
   const CreateAccountPage({super.key});
@@ -37,7 +38,10 @@ class CreateAccountPage extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle continue action
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PoliciesPage()),
+                  );                  // Handle continue action
                 },
                 style: ButtonStyle(
                   padding: WidgetStateProperty.all(
