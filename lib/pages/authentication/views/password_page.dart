@@ -22,7 +22,7 @@ class _PasswordPageState extends State<PasswordPage> {
           alignment: Alignment.centerLeft,
           child: Text(
             "Enter Your Password",
-            style: TextStyle(fontSize: 18, color: Colors.white),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600, color: Colors.white),
           ),
         ),
         const SizedBox(height: 20),
