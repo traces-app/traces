@@ -41,7 +41,7 @@ class CreateAccountPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => PoliciesPage()),
-                  );                  // Handle continue action
+                  ); // Handle continue action
                 },
                 style: ButtonStyle(
                   padding: WidgetStateProperty.all(
