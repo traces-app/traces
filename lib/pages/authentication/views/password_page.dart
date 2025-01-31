@@ -36,11 +36,12 @@ class _PasswordPageState extends State<PasswordPage> {
               context.read<ActivityIndicatorCubit>().toggle();
               Timer(
                 const Duration(seconds: 3),
-                    () {
+                () {
                   context.read<ActivityIndicatorCubit>().toggle();
                   Navigator.push(
                     context,
-                    CupertinoPageRoute(builder: (context) => const PoliciesPage()),
+                    CupertinoPageRoute(
+                        builder: (context) => const PoliciesPage()),
                   );
                 },
               );
@@ -74,7 +75,7 @@ class _PasswordPageState extends State<PasswordPage> {
                   context.read<ActivityIndicatorCubit>().toggle();
                   Timer(
                     const Duration(seconds: 3),
-                        () {
+                    () {
                       context.read<ActivityIndicatorCubit>().toggle();
                       Navigator.push(
                         context,
@@ -98,7 +99,8 @@ class _PasswordPageState extends State<PasswordPage> {
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.grey[900],
               foregroundColor: Colors.white60,
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 11),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 11),
               shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(18)),
               ),
@@ -106,7 +108,8 @@ class _PasswordPageState extends State<PasswordPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                CupertinoPageRoute(builder: (context) => const VerificationPage()),
+                CupertinoPageRoute(
+                    builder: (context) => const VerificationPage()),
               );
             },
             child: const Text(
