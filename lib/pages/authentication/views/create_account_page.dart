@@ -28,7 +28,7 @@ class CreateAccountPage extends StatelessWidget {
               type: "text",
               focused: true,
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 27),
             const StyledTextField(
               placeholder: "Last Name",
               type: "text",
