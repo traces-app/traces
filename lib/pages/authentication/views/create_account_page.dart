@@ -33,7 +33,7 @@ class CreateAccountPage extends StatelessWidget {
               placeholder: "Last Name",
               type: "text",
             ),
-            const SizedBox(height: 25),
+            const SizedBox(height: 40),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
