@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traces/pages/authentication/authentication.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:traces/pages/home/views/home_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -23,7 +24,7 @@ class _RootWidgetState extends State<RootWidget> {
       debugShowCheckedModeBanner: false,
       title: 'Traces',
       theme: ThemeData.dark(),
-      home: const AuthenticationPage(),
+      home: const HomePage(),
     );
   }
 }
