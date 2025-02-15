@@ -45,7 +45,6 @@
 //   }
 // }
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
@@ -117,14 +116,15 @@ class BaseLayout extends StatelessWidget {
                   index == 0
                       ? 'Home'
                       : index == 1
-                      ? 'Notifications'
-                      : 'Account',
+                          ? 'Notifications'
+                          : 'Account',
                 ),
               ),
               // Main content of the tab
               child: SafeArea(
                 child: Column(
-                  children: children ?? [], // Use the provided children or an empty list
+                  children: children ??
+                      [], // Use the provided children or an empty list
                 ),
               ),
             );
