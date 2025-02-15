@@ -119,9 +119,6 @@ class BaseLayout extends StatelessWidget {
                       : index == 1
                       ? 'Notifications'
                       : 'Account',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600, // Font weight 600
-                  ),
                 ),
               ),
               // Main content of the tab
