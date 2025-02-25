@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traces/pages/authentication/authentication.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:traces/pages/home/views/home_page.dart';
+import 'package:traces/pages/home/layouts/layout.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +16,6 @@ class RootWidget extends StatefulWidget {
   State<RootWidget> createState() => _RootWidgetState();
 }
 
-// This widget is the root of the application.
 class _RootWidgetState extends State<RootWidget> {
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class _RootWidgetState extends State<RootWidget> {
       debugShowCheckedModeBanner: false,
       title: 'Traces',
       theme: ThemeData.dark(),
-      home: const HomePage(),
+      home: const BaseLayout(),
     );
   }
 }

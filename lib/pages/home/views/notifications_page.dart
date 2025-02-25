@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:traces/pages/home/layouts/layout.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class NotificationsPage extends StatefulWidget {
+  const NotificationsPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<NotificationsPage> createState() => _NotificationsPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _NotificationsPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Welcome to the Home Page',
+      child: Text('Notifications Page',
           style: TextStyle(
               color: Color.fromRGBO(10, 132, 255, 1),
               decoration: TextDecoration.none, // Disable underline explicitly

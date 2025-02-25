@@ -1,9 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import '../views/home_page.dart';
+import '../views/notifications_page.dart';
+import '../views/account_page.dart';
 
-class BaseLayout extends StatelessWidget {
-  final List<Widget>? children;
-  const BaseLayout({this.children, super.key});
+class BaseLayout extends StatefulWidget {
+  const BaseLayout({super.key});
+
+  @override
+  _BaseLayoutState createState() => _BaseLayoutState();
+}
+
+class _BaseLayoutState extends State<BaseLayout> {
+  int _selectedIndex = 0;
+
+  final List<Widget> _pages = [
+    const HomePage(),
+    const NotificationsPage(),
+    const AccountPage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +31,7 @@ class BaseLayout extends StatelessWidget {
         items: [
           const BottomNavigationBarItem(
             icon: Padding(
-              padding: EdgeInsets.only(
-                  top: 7, left: 22, right: 21), // Padding for Home icon
+              padding: EdgeInsets.only(top: 7, left: 22, right: 21),
               child: Icon(
                 CupertinoIcons.home,
                 size: 28,
@@ -36,7 +50,6 @@ class BaseLayout extends StatelessWidget {
                     size: 28,
                   ),
                 ),
-                // Red dot for notifications without border
                 Positioned(
                   right: 12,
                   top: 6,
@@ -44,8 +57,7 @@ class BaseLayout extends StatelessWidget {
                     width: 5,
                     height: 5,
                     decoration: const BoxDecoration(
-                      color: Color.fromRGBO(241, 60, 60,
-                          1), // Updated color to rgba(241, 60, 60, 1)
+                      color: Color.fromRGBO(241, 60, 60, 1),
                       shape: BoxShape.circle,
                     ),
                   ),
@@ -65,45 +77,32 @@ class BaseLayout extends StatelessWidget {
             label: "Account",
           ),
         ],
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
       tabBuilder: (context, index) {
-        Widget middleText;
-        if (index == 0) {
-          middleText = const Text(
-            'Home',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontFamily: 'SFProDisplay',
-            ),
-          );
-        } else if (index == 1) {
-          middleText = const Text(
-            'Notifications',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontFamily: 'SFProDisplay',
-            ),
-          );
-        } else {
-          middleText = const Text(
-            'Account',
-            style: TextStyle(
-              fontWeight: FontWeight.w600,
-              fontFamily: 'SFProDisplay',
-            ),
-          );
-        }
-
         return CupertinoPageScaffold(
-          backgroundColor: Colors.black, // Set the page color to black
+          backgroundColor: Colors.black,
           navigationBar: CupertinoNavigationBar(
-            middle: middleText,
-            padding: EdgeInsetsDirectional.only(start: 22, end: 21, top: 5),
+            middle: Text(
+              index == 0
+                  ? 'Home'
+                  : index == 1
+                      ? 'Notifications'
+                      : 'Account',
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                fontFamily: 'SFProDisplay',
+              ),
+            ),
+            padding:
+                const EdgeInsetsDirectional.only(start: 22, end: 21, top: 5),
           ),
           child: SafeArea(
-            child: Column(
-              children: children ?? [],
-            ),
+            child: _pages[_selectedIndex],
           ),
         );
       },
