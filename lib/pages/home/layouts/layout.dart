@@ -18,6 +18,8 @@ class BaseLayout extends StatelessWidget {
   static const _tabPadding =
       EdgeInsetsDirectional.only(top: 7, start: 22, end: 21);
 
+  static const _notifications = false;
+
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
@@ -62,19 +64,21 @@ class BaseLayout extends StatelessWidget {
               padding: _tabPadding,
               child: Icon(CupertinoIcons.tray, size: 28),
             ),
-            Positioned(
-              right: 12,
-              top: 6,
-              child: SizedBox(
-                width: 5,
-                height: 5,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                      color: Color.fromRGBO(241, 60, 60, 1),
-                      shape: BoxShape.circle),
-                ),
-              ),
-            ),
+            _notifications
+                ? Positioned(
+                    right: 12,
+                    top: 6,
+                    child: SizedBox(
+                      width: 5,
+                      height: 5,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                            color: Color.fromRGBO(241, 60, 60, 1),
+                            shape: BoxShape.circle),
+                      ),
+                    ),
+                  )
+                : SizedBox.shrink(),
           ],
         ),
         label: "Notifications",
