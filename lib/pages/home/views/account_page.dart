@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:traces/pages/home/layouts/layout.dart';
 
 class AccountPage extends StatefulWidget {
   const AccountPage({super.key});

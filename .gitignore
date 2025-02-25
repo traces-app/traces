@@ -98,3 +98,11 @@ windows/
 
 # Generated Files
 pubspec.lock
+
+android/app/.cxx/
+ios/Runner.xcodeproj/xcshareddata/xcschemes/
+**/firebase_app_id_file.json
+**/.dart_tool/
+ios/Flutter/flutter_export_environment.sh
+**/.gradle/
+.env

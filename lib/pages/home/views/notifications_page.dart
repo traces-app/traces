@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:traces/pages/home/layouts/layout.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
