@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:traces/pages/authentication/authentication.dart';
+import 'package:flutter/cupertino.dart';
 
 class PoliciesPage extends StatefulWidget {
   const PoliciesPage({super.key});
@@ -16,7 +17,7 @@ class _PoliciesPageState extends State<PoliciesPage> {
     return AuthenticationLayout(
       children: [
         const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(horizontal: 7, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -25,7 +26,7 @@ class _PoliciesPageState extends State<PoliciesPage> {
                 "Review Policies and Create Account",
                 style: TextStyle(
                   fontSize: 18,
-                  fontWeight: FontWeight.normal,
+                  fontWeight: FontWeight.w600,
                   color: Colors.white,
                 ),
               ),
@@ -33,20 +34,35 @@ class _PoliciesPageState extends State<PoliciesPage> {
               Text(
                 "Welcome to Traces",
                 style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w600,
+                  fontSize: 19,
+                  fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),
               ),
               SizedBox(height: 10),
-              Text(
-                "Thank you for signing up! Before creating your account, "
-                "please review the following summary of our key terms and policies. "
-                "By continuing, you agree to these terms.",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
-                  height: 1.5,
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text:
+                          "Thank you for signing up! Before creating your account please review the following summary of our key terms and policies. ",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(153, 255, 255, 255),
+                        height: 1.5,
+                      ),
+                    ),
+                    TextSpan(
+                      text: "By continuing, you agree to these terms.",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(198, 255, 255, 255),
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -54,32 +70,69 @@ class _PoliciesPageState extends State<PoliciesPage> {
         ),
 
         // Terms of Service
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 7, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  const Text(
+                  Text(
                     "Terms of Service Overview",
                     style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Icon(Icons.attach_file, size: 18, color: Colors.blue),
+                  SizedBox(width: 5),
+                  Icon(CupertinoIcons.link, size: 18, color: Colors.blue),
                 ],
               ),
-              const SizedBox(height: 10),
-              const Text(
-                "By using our platform, you agree to our Terms of Service.You are responsible for your account information and ensuring it is used lawfully.All content is protected by intellectual property laws.We are not liable for any damages resulting from your use of the service.",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white70,
-                  height: 1.6,
+              SizedBox(height: 10),
+              // Text(
+              //   "By using our platform, you agree to our Terms of Service.You are responsible for your account information and ensuring it is used lawfully.All content is protected by intellectual property laws.We are not liable for any damages resulting from your use of the service.",
+              //   style: TextStyle(
+              //     fontSize: 16,
+              //     fontWeight: FontWeight.w500,
+              //     color: Colors.white70,
+              //     height: 1.6,
+              //   ),
+              // ),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text:
+                          "By using our platform, you agree to our Terms of Service. ",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(153, 255, 255, 255),
+                        height: 1.5,
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          "You are responsible for your account information and ensuring it is used lawfully",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(198, 255, 255, 255),
+                        height: 1.5,
+                      ),
+                    ),
+                    TextSpan(
+                      text:
+                          "All content is protected by intellectual property laws.We are not liable for any damages resulting from your use of the service. ",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        color: Color.fromARGB(153, 255, 255, 255),
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
@@ -87,30 +140,31 @@ class _PoliciesPageState extends State<PoliciesPage> {
         ),
 
         // Privacy Policy
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 7, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
-                  const Text(
+                  Text(
                     "Privacy Policy Overview",
                     style: TextStyle(
                       fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      fontWeight: FontWeight.w500,
                       color: Colors.white,
                     ),
                   ),
-                  const SizedBox(width: 5),
-                  Icon(Icons.attach_file, size: 18, color: Colors.blue),
+                  SizedBox(width: 5),
+                  Icon(CupertinoIcons.link, size: 18, color: Colors.blue),
                 ],
               ),
-              const SizedBox(height: 10),
-              const Text(
+              SizedBox(height: 10),
+              Text(
                 "We collect and use your personal information like name and email address to provide and improve our services. We may share data with trusted partners but never sell it. You can access, update, or delete your data anytime.By using our platform, you agree to our data collection practices.",
                 style: TextStyle(
                   fontSize: 16,
+                  fontWeight: FontWeight.w500,
                   color: Colors.white70,
                   height: 1.6,
                 ),
@@ -128,11 +182,11 @@ class _PoliciesPageState extends State<PoliciesPage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Expanded(
+              const Expanded(
                 child: Text(
                   "I agree to Terms and Privacy Policy",
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 17.5,
                     color: Colors.white,
                     fontWeight: FontWeight.w500,
                   ),
@@ -154,10 +208,11 @@ class _PoliciesPageState extends State<PoliciesPage> {
                     ),
                     color: _isChecked ? Colors.blue : Colors.transparent,
                   ),
-                  width: 24,
-                  height: 24,
+                  width: 24.14,
+                  height: 24.14,
                   child: _isChecked
-                      ? const Icon(Icons.check, color: Colors.white, size: 16)
+                      ? const Icon(CupertinoIcons.checkmark,
+                          color: Colors.white, size: 13)
                       : null,
                 ),
               ),
@@ -180,7 +235,7 @@ class _PoliciesPageState extends State<PoliciesPage> {
                       ? Colors.white
                       : Colors.white24, // Dim button if disabled
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   elevation: _isChecked ? 5 : 0,
                 ),
