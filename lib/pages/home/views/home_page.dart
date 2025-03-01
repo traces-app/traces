@@ -75,8 +75,51 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // **Search Bar Removed**
+            // Search Bar
+            Container(
+              width: 409,
+              height: 40,
+              padding: const EdgeInsets.fromLTRB(12, 7, 12, 7),
+              decoration: BoxDecoration(
+                color: Colors.grey[900],
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                children: [
+                  const Icon(CupertinoIcons.search, color: Colors.grey, size: 18),
+                  const SizedBox(width: 7),
+                  Expanded(
+                    child: TextField(
+                      style: const TextStyle(
+                        fontFamily: 'SF Pro Text',
+                        fontSize: 17,
+                        fontWeight: FontWeight.w500,
+                        height: 22 / 17,
+                        letterSpacing: -0.41,
+                        color: Colors.white,
+                      ),
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Search",
+                        hintStyle: TextStyle(
+                          fontFamily: 'SF Pro Text',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500,
+                          height: 22 / 17,
+                          letterSpacing: -0.41,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
+            const SizedBox(height: 14),
+
+            // **Removed Scrollable Filter Chips**
+            
             const SizedBox(height: 35),
           ],
         ),
