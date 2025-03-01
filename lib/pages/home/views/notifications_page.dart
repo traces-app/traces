@@ -8,6 +8,79 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
+  int notificationCount = 4; // Initial notification count
+  Map<String, List<Map<String, dynamic>>> categorizedNotifications = {
+    'New': [
+      {
+        'trackingId': 'TX 268 431',
+        'message':
+            'Arrived at Kurunegala Warehouse and is being processed for the next transit step.',
+        'icon': Icons.call_received,
+        'color': Colors.yellow
+      },
+      {
+        'trackingId': 'TX 268 431',
+        'message':
+            'Starbucks Corporation, added a new shipment linking to you.',
+        'icon': Icons.add_circle,
+        'color': Colors.blue
+      },
+    ],
+    'Today': [
+      {
+        'trackingId': 'TX 268 431',
+        'message':
+            'Shipment is out for delivery and will arrive at the destination soon.',
+        'icon': Icons.arrow_forward,
+        'color': Colors.orange
+      },
+      {
+        'trackingId': 'TX 268 431',
+        'message':
+            'UPS Logistics, canceled shipment as the courier was unable to pick up the package.',
+        'icon': Icons.cancel,
+        'color': Colors.red
+      },
+    ],
+    'Yesterday': [
+      {
+        'trackingId': 'TX 268 431',
+        'message': 'Successfully arrived at the destination.',
+        'icon': Icons.check_circle,
+        'color': Colors.green
+      },
+      {
+        'trackingId': 'TX 268 431',
+        'message': 'Chanel International, added a new shipment linking to you.',
+        'icon': Icons.add_circle,
+        'color': Colors.blue
+      },
+      {
+        'trackingId': 'TX 268 431',
+        'message':
+            'Starbucks Corporation, added a new shipment linking to you.',
+        'icon': Icons.add_circle,
+        'color': Colors.blue
+      },
+    ],
+    'Earlier': [
+      {
+        'trackingId': 'TX 268 431',
+        'message':
+            'Arrived at Colombo Distribution Center and is being prepared for dispatch.',
+        'icon': Icons.call_received,
+        'color': Colors.yellow
+      },
+      {
+        'trackingId': 'TX 268 431',
+        'message':
+            'Shipment has arrived at Kandy Warehouse and is awaiting transfer.',
+        'icon': Icons.call_received,
+        'color': Colors.yellow
+      },
+    ],
+  };
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +98,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 color: Colors.red,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Text('4',
-                  style: TextStyle(
+              child: Text('$notificationCount',
+                  style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                       fontWeight: FontWeight.bold)),
@@ -41,57 +114,21 @@ class _NotificationsPageState extends State<NotificationsPage> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _buildSectionTitle('New'),
-            _buildNotificationItem(
-                'TX 268 431',
-                'Arrived at Kurunegala Warehouse and is being processed for the next transit step.',
-                Icons.location_on,
-                Colors.blue),
-            _buildNotificationItem(
-                'TX 268 431',
-                'Starbucks Corporation, added a new shipment linking to you.',
-                Icons.add_circle,
-                Colors.green),
-            _buildSectionTitle('Today'),
-            _buildNotificationItem(
-                'TX 268 431',
-                'Shipment is out for delivery and will arrive at the destination soon.',
-                Icons.local_shipping,
-                Colors.orange),
-            _buildNotificationItem(
-                'TX 268 431',
-                'UPS Logistics, canceled shipment as the courier was unable to pick up the package.',
-                Icons.cancel,
-                Colors.red),
-            _buildSectionTitle('Yesterday'),
-            _buildNotificationItem(
-                'TX 268 431',
-                'Successfully arrived at the destination.',
-                Icons.check_circle,
-                Colors.green),
-            _buildNotificationItem(
-                'TX 268 431',
-                'Chanel International, added a new shipment linking to you.',
-                Icons.add_circle,
-                Colors.green),
-            _buildNotificationItem(
-                'TX 268 431',
-                'Starbucks Corporation, added a new shipment linking to you.',
-                Icons.add_circle,
-                Colors.green),
-            _buildSectionTitle('Earlier'),
-            _buildNotificationItem(
-                'TX 268 431',
-                'Arrived at Colombo Distribution Center and is being prepared for dispatch.',
-                Icons.location_on,
-                Colors.blue),
-            _buildNotificationItem(
-                'TX 268 431',
-                'Shipment has arrived at Kandy Warehouse and is awaiting transfer.',
-                Icons.sync,
-                Colors.grey),
-          ],
+          children: categorizedNotifications.entries.map((entry) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildSectionTitle(entry.key),
+                ...entry.value
+                    .map((notification) => _buildNotificationItem(
+                        notification['trackingId'],
+                        notification['message'],
+                        notification['icon'],
+                        notification['color']))
+                    .toList(),
+              ],
+            );
+          }).toList(),
         ),
       ),
     );
