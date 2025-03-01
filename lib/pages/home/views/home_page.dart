@@ -118,11 +118,78 @@ class _HomePageState extends State<HomePage> {
 
             const SizedBox(height: 14),
 
-            // **Removed Scrollable Filter Chips**
-            
+            // Scrollable Filter Chips
+            SizedBox(
+              height: 40,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _buildFilterChip("All", "5", const Color(0xFF002D62), Colors.white),
+                    const SizedBox(width: 15),
+                    _buildFilterChipWithIcon("Delivered", "2", CupertinoIcons.checkmark, const Color(0xFF303030), Colors.white70),
+                    const SizedBox(width: 15),
+                    _buildFilterChipWithIcon("In Transit", "0", CupertinoIcons.location, const Color(0xFF303030), Colors.white60),
+                    const SizedBox(width: 15),
+                    _buildFilterChip("Cancelled", "0", const Color(0xFF303030), Colors.white54),
+                  ],
+                ),
+              ),
+            ),
+
             const SizedBox(height: 35),
+
+            // **No Shipments Widget Removed**
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildFilterChip(String label, String count, Color backgroundColor, Color textColor) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(26),
+      ),
+      child: Row(
+        children: [
+          Text(
+            label,
+            style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            count,
+            style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFilterChipWithIcon(String label, String count, IconData icon, Color backgroundColor, Color textColor) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(26),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: textColor, size: 18),
+          const SizedBox(width: 8),
+          Text(
+            label,
+            style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w600),
+          ),
+          const SizedBox(width: 8),
+          Text(
+            count,
+            style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }
