@@ -86,7 +86,8 @@ class _HomePageState extends State<HomePage> {
               ),
               child: Row(
                 children: [
-                  const Icon(CupertinoIcons.search, color: Colors.grey, size: 18),
+                  const Icon(CupertinoIcons.search,
+                      color: Colors.grey, size: 18),
                   const SizedBox(width: 7),
                   Expanded(
                     child: TextField(
@@ -125,13 +126,25 @@ class _HomePageState extends State<HomePage> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    _buildFilterChip("All", "5", const Color(0xFF002D62), Colors.white),
+                    _buildFilterChip(
+                        "All", "5", const Color(0xFF002D62), Colors.white),
                     const SizedBox(width: 15),
-                    _buildFilterChipWithIcon("Delivered", "2", CupertinoIcons.checkmark, const Color(0xFF303030), Colors.white70),
+                    _buildFilterChipWithIcon(
+                        "Delivered",
+                        "2",
+                        CupertinoIcons.checkmark,
+                        const Color(0xFF303030),
+                        Colors.white70),
                     const SizedBox(width: 15),
-                    _buildFilterChipWithIcon("In Transit", "0", CupertinoIcons.location, const Color(0xFF303030), Colors.white60),
+                    _buildFilterChipWithIcon(
+                        "In Transit",
+                        "0",
+                        CupertinoIcons.location,
+                        const Color(0xFF303030),
+                        Colors.white60),
                     const SizedBox(width: 15),
-                    _buildFilterChip("Cancelled", "0", const Color(0xFF303030), Colors.white54),
+                    _buildFilterChip("Cancelled", "0", const Color(0xFF303030),
+                        Colors.white54),
                   ],
                 ),
               ),
@@ -139,14 +152,16 @@ class _HomePageState extends State<HomePage> {
 
             const SizedBox(height: 35),
 
-            // **No Shipments Widget Removed**
+            // No Shipments Found UI
+            const NoShipmentsWidget(),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildFilterChip(String label, String count, Color backgroundColor, Color textColor) {
+  Widget _buildFilterChip(
+      String label, String count, Color backgroundColor, Color textColor) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
@@ -157,19 +172,22 @@ class _HomePageState extends State<HomePage> {
         children: [
           Text(
             label,
-            style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: textColor, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(width: 8),
           Text(
             count,
-            style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildFilterChipWithIcon(String label, String count, IconData icon, Color backgroundColor, Color textColor) {
+  Widget _buildFilterChipWithIcon(String label, String count, IconData icon,
+      Color backgroundColor, Color textColor) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
@@ -182,12 +200,14 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(width: 8),
           Text(
             label,
-            style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.w600),
+            style: TextStyle(
+                color: textColor, fontSize: 16, fontWeight: FontWeight.w600),
           ),
           const SizedBox(width: 8),
           Text(
             count,
-            style: TextStyle(color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                color: textColor, fontSize: 16, fontWeight: FontWeight.bold),
           ),
         ],
       ),
@@ -209,7 +229,10 @@ class _HomePageState extends State<HomePage> {
             children: [
               const Text(
                 "Add New Shipment",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
               const SizedBox(height: 20),
               TextField(
@@ -218,7 +241,8 @@ class _HomePageState extends State<HomePage> {
                   labelStyle: TextStyle(color: Colors.white),
                   filled: true,
                   fillColor: Colors.grey[900],
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
                 ),
                 style: const TextStyle(color: Colors.white),
               ),
@@ -226,17 +250,50 @@ class _HomePageState extends State<HomePage> {
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
-                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                 ),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text("Add Shipment", style: TextStyle(color: Colors.white)),
+                child: const Text("Add Shipment",
+                    style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
         );
       },
+    );
+  }
+}
+
+// No Shipments Found Widget
+class NoShipmentsWidget extends StatelessWidget {
+  const NoShipmentsWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: const [
+        Icon(CupertinoIcons.cube_box, color: Colors.white60, size: 40),
+        SizedBox(height: 10),
+        Text(
+          "No Shipments Found",
+          style: TextStyle(color: Colors.white60, fontSize: 18),
+        ),
+        SizedBox(height: 10),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text("Tap on ", style: TextStyle(color: Colors.white38)),
+            Icon(CupertinoIcons.add_circled, color: Colors.blue, size: 18),
+            Text(" in the top right corner",
+                style: TextStyle(color: Colors.white38)),
+          ],
+        ),
+        Text("to link a new shipment", style: TextStyle(color: Colors.white38)),
+      ],
     );
   }
 }
