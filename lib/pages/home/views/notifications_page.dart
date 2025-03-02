@@ -1,21 +1,6 @@
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Notifications App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: NotificationsPage(),
-    );
-  }
-}
+import 'package:traces/shared/widgets/section_title.dart';
+import 'package:traces/shared/widgets/notification_item.dart';
 
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
@@ -25,7 +10,7 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
-  // Hardcoded notification data (can be moved to a separate file or fetched from an API)
+  // Hardcoded notification data with timestamps
   final Map<String, List<Map<String, dynamic>>> categorizedNotifications = {
     'New': [
       {
@@ -34,13 +19,16 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Arrived at Kurunegala Warehouse and is being processed for the next transit step.',
         'icon': Icons.call_received,
         'color': Colors.yellow,
+        'timestamp': DateTime.now().subtract(Duration(minutes: 16)),
+        // 16 minutes ago
       },
       {
         'trackingId': 'TX 268 431',
         'message':
             'Starbucks Corporation, added a new shipment linking to you.',
-        'icon': Icons.add_circle,
+        'icon': 'assets/icons/images.png',
         'color': Colors.blue,
+        'timestamp': DateTime.now().subtract(Duration(hours: 2)), // 2 hours ago
       },
     ],
     'Today': [
@@ -50,6 +38,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Shipment is out for delivery and will arrive at the destination soon.',
         'icon': Icons.arrow_forward,
         'color': Colors.orange,
+        'timestamp': DateTime.now().subtract(Duration(hours: 4)), // 4 hours ago
       },
       {
         'trackingId': 'TX 268 431',
@@ -57,6 +46,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'UPS Logistics, canceled shipment as the courier was unable to pick up the package.',
         'icon': Icons.cancel,
         'color': Colors.red,
+        'timestamp': DateTime.now().subtract(Duration(hours: 5)), // 5 hours ago
       },
     ],
     'Yesterday': [
@@ -65,12 +55,15 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message': 'Successfully arrived at the destination.',
         'icon': Icons.check_circle,
         'color': Colors.green,
+        'timestamp': DateTime.now().subtract(Duration(days: 1)), // 1 day ago
       },
       {
         'trackingId': 'TX 268 431',
         'message': 'Chanel International, added a new shipment linking to you.',
         'icon': Icons.add_circle,
         'color': Colors.blue,
+        'timestamp': DateTime.now().subtract(Duration(days: 1, hours: 2)),
+        // 1 day and 2 hours ago
       },
       {
         'trackingId': 'TX 268 431',
@@ -78,6 +71,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Starbucks Corporation, added a new shipment linking to you.',
         'icon': Icons.add_circle,
         'color': Colors.blue,
+        'timestamp': DateTime.now().subtract(Duration(days: 1, hours: 3)),
+        // 1 day and 3 hours ago
       },
     ],
     'Earlier': [
@@ -87,6 +82,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Arrived at Colombo Distribution Center and is being prepared for dispatch.',
         'icon': Icons.call_received,
         'color': Colors.yellow,
+        'timestamp': DateTime.now().subtract(Duration(days: 3)), // 3 days ago
       },
       {
         'trackingId': 'TX 268 431',
@@ -94,6 +90,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Shipment has arrived at Kandy Warehouse and is awaiting transfer.',
         'icon': Icons.call_received,
         'color': Colors.yellow,
+        'timestamp': DateTime.now().subtract(Duration(days: 4)), // 4 days ago
       },
     ],
   };
@@ -105,6 +102,20 @@ class _NotificationsPageState extends State<NotificationsPage> {
         .length;
   }
 
+  // Function to calculate time difference (e.g., "16m", "2h", "1d")
+  String _getTimeDifference(DateTime timestamp) {
+    final now = DateTime.now();
+    final difference = now.difference(timestamp);
+
+    if (difference.inMinutes < 60) {
+      return '${difference.inMinutes}m'; // Minutes ago
+    } else if (difference.inHours < 24) {
+      return '${difference.inHours}h'; // Hours ago
+    } else {
+      return '${difference.inDays}d'; // Days ago
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,19 +123,32 @@ class _NotificationsPageState extends State<NotificationsPage> {
         title: Row(
           children: [
             const Text('Notifications',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                style: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.w700,
+                    fontStyle: FontStyle.normal,
+                    height: 36.9 / 34,
+                    letterSpacing: 0.337,
+                    fontFamily: "SF Pro Display")),
             const SizedBox(width: 6),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
               decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(12),
+                color: const Color(0xFF411C1C),
+                borderRadius: BorderRadius.circular(22),
               ),
-              child: Text('$notificationCount',
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold)),
+              child: Text(
+                '$notificationCount',
+                style: const TextStyle(
+                  color: Color(0xFFF56666),
+                  // Light red color
+                  fontSize: 21,
+                  fontWeight: FontWeight.w700,
+                  height: 38.745 / 21,
+                  // Corrected placement
+                  letterSpacing: 0.353, // Corrected placement
+                ),
+              ),
             ),
           ],
         ),
@@ -134,7 +158,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
       ),
       backgroundColor: Colors.black,
       body: categorizedNotifications.isEmpty
-          ? Center(
+          ? const Center(
               child: Text('No notifications available',
                   style: TextStyle(color: Colors.white)),
             )
@@ -145,49 +169,27 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _buildSectionTitle(entry.key),
+                    SectionTitle(title: entry.key),
+                    // Using the new SectionTitle widget
                     ...entry.value
-                        .map((notification) => _buildNotificationItem(
-                            notification['trackingId'],
-                            notification['message'],
-                            notification['icon'],
-                            notification['color']))
+                        .map(
+                          (notification) => NotificationItem(
+                            trackingId: notification['trackingId'],
+                            message: notification['message'],
+                            icon: notification['icon'],
+                            iconColor: notification['color'],
+                            timestamp: notification['timestamp'],
+                            getTimeDifference:
+                                _getTimeDifference, // Passing function reference
+                          ),
+                        )
                         .toList(),
                   ],
                 );
               },
-              separatorBuilder: (context, index) => Divider(color: Colors.grey),
+              separatorBuilder: (context, index) => const Divider(
+                  thickness: 1, color: Color.fromRGBO(84, 84, 88, 0.35)),
             ),
-    );
-  }
-
-  // Helper method to build section titles (e.g., "New", "Today")
-  Widget _buildSectionTitle(String title) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Text(
-        title,
-        style: const TextStyle(
-            fontSize: 18, fontWeight: FontWeight.bold, color: Colors.grey),
-      ),
-    );
-  }
-
-  // Helper method to build individual notification items
-  Widget _buildNotificationItem(
-      String trackingId, String message, IconData icon, Color iconColor) {
-    return ListTile(
-      leading: Icon(icon, color: iconColor, size: 30),
-      title: Text(
-        trackingId,
-        style:
-            const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
-      ),
-      subtitle: Text(
-        message,
-        style: const TextStyle(color: Colors.grey),
-      ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
     );
   }
 }
