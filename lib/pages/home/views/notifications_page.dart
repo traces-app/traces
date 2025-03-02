@@ -1,5 +1,22 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Notifications App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: NotificationsPage(),
+    );
+  }
+}
+
 class NotificationsPage extends StatefulWidget {
   const NotificationsPage({super.key});
 
@@ -8,22 +25,22 @@ class NotificationsPage extends StatefulWidget {
 }
 
 class _NotificationsPageState extends State<NotificationsPage> {
-  int notificationCount = 4; // Initial notification count
-  Map<String, List<Map<String, dynamic>>> categorizedNotifications = {
+  // Hardcoded notification data (can be moved to a separate file or fetched from an API)
+  final Map<String, List<Map<String, dynamic>>> categorizedNotifications = {
     'New': [
       {
         'trackingId': 'TX 268 431',
         'message':
             'Arrived at Kurunegala Warehouse and is being processed for the next transit step.',
         'icon': Icons.call_received,
-        'color': Colors.yellow
+        'color': Colors.yellow,
       },
       {
         'trackingId': 'TX 268 431',
         'message':
             'Starbucks Corporation, added a new shipment linking to you.',
         'icon': Icons.add_circle,
-        'color': Colors.blue
+        'color': Colors.blue,
       },
     ],
     'Today': [
@@ -32,14 +49,14 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message':
             'Shipment is out for delivery and will arrive at the destination soon.',
         'icon': Icons.arrow_forward,
-        'color': Colors.orange
+        'color': Colors.orange,
       },
       {
         'trackingId': 'TX 268 431',
         'message':
             'UPS Logistics, canceled shipment as the courier was unable to pick up the package.',
         'icon': Icons.cancel,
-        'color': Colors.red
+        'color': Colors.red,
       },
     ],
     'Yesterday': [
@@ -47,20 +64,20 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message': 'Successfully arrived at the destination.',
         'icon': Icons.check_circle,
-        'color': Colors.green
+        'color': Colors.green,
       },
       {
         'trackingId': 'TX 268 431',
         'message': 'Chanel International, added a new shipment linking to you.',
         'icon': Icons.add_circle,
-        'color': Colors.blue
+        'color': Colors.blue,
       },
       {
         'trackingId': 'TX 268 431',
         'message':
             'Starbucks Corporation, added a new shipment linking to you.',
         'icon': Icons.add_circle,
-        'color': Colors.blue
+        'color': Colors.blue,
       },
     ],
     'Earlier': [
@@ -69,25 +86,30 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message':
             'Arrived at Colombo Distribution Center and is being prepared for dispatch.',
         'icon': Icons.call_received,
-        'color': Colors.yellow
+        'color': Colors.yellow,
       },
       {
         'trackingId': 'TX 268 431',
         'message':
             'Shipment has arrived at Kandy Warehouse and is awaiting transfer.',
         'icon': Icons.call_received,
-        'color': Colors.yellow
+        'color': Colors.yellow,
       },
     ],
   };
+
+  // Calculate the total number of notifications dynamically
+  int get notificationCount {
+    return categorizedNotifications.values
+        .expand((notifications) => notifications)
+        .length;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
           children: [
             const Text('Notifications',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
@@ -111,29 +133,35 @@ class _NotificationsPageState extends State<NotificationsPage> {
         centerTitle: false,
       ),
       backgroundColor: Colors.black,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: categorizedNotifications.entries.map((entry) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildSectionTitle(entry.key),
-                ...entry.value
-                    .map((notification) => _buildNotificationItem(
-                        notification['trackingId'],
-                        notification['message'],
-                        notification['icon'],
-                        notification['color']))
-                    .toList(),
-              ],
-            );
-          }).toList(),
-        ),
-      ),
+      body: categorizedNotifications.isEmpty
+          ? Center(
+              child: Text('No notifications available',
+                  style: TextStyle(color: Colors.white)),
+            )
+          : ListView.separated(
+              itemCount: categorizedNotifications.length,
+              itemBuilder: (context, index) {
+                final entry = categorizedNotifications.entries.elementAt(index);
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildSectionTitle(entry.key),
+                    ...entry.value
+                        .map((notification) => _buildNotificationItem(
+                            notification['trackingId'],
+                            notification['message'],
+                            notification['icon'],
+                            notification['color']))
+                        .toList(),
+                  ],
+                );
+              },
+              separatorBuilder: (context, index) => Divider(color: Colors.grey),
+            ),
     );
   }
 
+  // Helper method to build section titles (e.g., "New", "Today")
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
@@ -145,6 +173,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
+  // Helper method to build individual notification items
   Widget _buildNotificationItem(
       String trackingId, String message, IconData icon, Color iconColor) {
     return ListTile(
