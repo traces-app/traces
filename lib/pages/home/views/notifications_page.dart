@@ -19,7 +19,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message':
             'Arrived at Kurunegala Warehouse and is being processed for the next transit step.',
         'icon': CupertinoIcons.arrow_down_left,
-        'color': Colors.yellow,
+        'color': const Color(0xFFCDD93C),
         'timestamp': DateTime.now().subtract(Duration(minutes: 16)),
         // 16 minutes ago
       },
@@ -28,7 +28,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message':
             'Starbucks Corporation, added a new shipment linking to you.',
         'icon': 'assets/icons/images.png',
-        'color': Colors.blue,
+        'color': const Color(0xFF73A9E3),
         'timestamp': DateTime.now().subtract(Duration(hours: 2)),
       },
     ],
@@ -38,7 +38,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message':
             'Shipment is out for delivery and will arrive at the destination soon.',
         'icon': CupertinoIcons.arrow_right,
-        'color': Colors.orange,
+        'color': const Color.fromRGBO(255, 165, 0, 0.90),
         'timestamp': DateTime.now().subtract(Duration(hours: 4)),
       },
       {
@@ -46,7 +46,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message':
             'UPS Logistics, canceled shipment as the courier was unable to pick up the package.',
         'icon': CupertinoIcons.xmark,
-        'color': Colors.red,
+        'color': const Color(0xFFEC3538),
         'timestamp': DateTime.now().subtract(Duration(hours: 5)),
       },
     ],
@@ -55,14 +55,14 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message': 'Successfully arrived at the destination.',
         'icon': CupertinoIcons.checkmark,
-        'color': Colors.green,
+        'color': const Color(0xFF33C75A),
         'timestamp': DateTime.now().subtract(Duration(days: 1)),
       },
       {
         'trackingId': 'TX 268 431',
         'message': 'Chanel International, added a new shipment linking to you.',
-        'icon': Icons.add_circle,
-        'color': Colors.blue,
+        'icon': CupertinoIcons.xmark,
+        'color': const Color(0xFF73A9E3),
         'timestamp': DateTime.now().subtract(Duration(days: 1, hours: 2)),
         // 1 day and 2 hours ago
       },
@@ -70,8 +70,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message':
             'Starbucks Corporation, added a new shipment linking to you.',
-        'icon': Icons.add_circle,
-        'color': Colors.blue,
+        'icon': CupertinoIcons.xmark,
+        'color': const Color(0xFF73A9E3),
         'timestamp': DateTime.now().subtract(Duration(days: 1, hours: 3)),
         // 1 day and 3 hours ago
       },
@@ -82,7 +82,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message':
             'Arrived at Colombo Distribution Center and is being prepared for dispatch.',
         'icon': CupertinoIcons.arrow_down_left,
-        'color': Colors.yellow,
+        'color': const Color(0xFFCDD93C),
         'timestamp': DateTime.now().subtract(Duration(days: 3)), // 3 days ago
       },
       {
@@ -90,7 +90,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'message':
             'Shipment has arrived at Kandy Warehouse and is awaiting transfer.',
         'icon': CupertinoIcons.arrow_down_left,
-        'color': Colors.yellow,
+        'color': const Color(0xFFCDD93C),
         'timestamp': DateTime.now().subtract(Duration(days: 4)), // 4 days ago
       },
     ],

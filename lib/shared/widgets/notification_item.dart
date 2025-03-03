@@ -56,11 +56,13 @@ class NotificationItem extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      contentPadding: const EdgeInsets.fromLTRB(5, 10, 16, 2),
+      contentPadding: const EdgeInsets.fromLTRB(10, 10, 16, 2),
     );
   }
 
   Widget _buildIcon() {
+    Color backgroundColor = iconColor.withOpacity(0.2);
+
     if (icon is String) {
       return ClipRRect(
         borderRadius: BorderRadius.circular(18),
@@ -75,8 +77,8 @@ class NotificationItem extends StatelessWidget {
       return Container(
         width: 45,
         height: 45,
-        decoration: const BoxDecoration(
-          color: Color(0xFF2D2215),
+        decoration: BoxDecoration(
+          color: backgroundColor, //Color(0xFF2D2215),
           shape: BoxShape.circle,
         ),
         child: Center(
