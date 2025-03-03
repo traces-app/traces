@@ -6,8 +6,9 @@ class NotificationItem extends StatelessWidget {
   final dynamic icon;
   final Color iconColor;
   final DateTime timestamp;
-  final String Function(DateTime)
-      getTimeDifference; // Function to calculate time difference
+  final String Function(DateTime) getTimeDifference;
+  final IconData? smallIcon;
+  final Color? smallIconColor;
 
   const NotificationItem({
     super.key,
@@ -17,12 +18,13 @@ class NotificationItem extends StatelessWidget {
     required this.iconColor,
     required this.timestamp,
     required this.getTimeDifference,
+    this.smallIcon,
+    this.smallIconColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    final timeDifference =
-        getTimeDifference(timestamp); // Calculate time difference
+    final timeDifference = getTimeDifference(timestamp);
 
     return ListTile(
       leading: _buildIcon(),
@@ -56,16 +58,44 @@ class NotificationItem extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      contentPadding: const EdgeInsets.fromLTRB(10, 10, 16, 2),
+      contentPadding:
+          const EdgeInsets.fromLTRB(5, 10, 16, 10), // Adjusted padding
     );
   }
 
   Widget _buildIcon() {
-    Color backgroundColor = iconColor.withOpacity(0.2);
+    return Stack(
+      clipBehavior: Clip.none, // Allows small icon to overlap
+      children: [
+        _buildMainIcon(),
+        if (smallIcon != null)
+          Positioned(
+            bottom: -35,
+            left: 1,
+            child: Container(
+              width: 45,
+              height: 45,
+              decoration: BoxDecoration(
+                color: smallIconColor,
+                shape: BoxShape.circle,
+              ),
+              child: Center(
+                child: Icon(
+                  smallIcon,
+                  color: iconColor,
+                  size: 30,
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
 
+  Widget _buildMainIcon() {
     if (icon is String) {
       return ClipRRect(
-        borderRadius: BorderRadius.circular(18),
+        borderRadius: BorderRadius.circular(12),
         child: Image.asset(
           icon,
           width: 45,
@@ -78,19 +108,19 @@ class NotificationItem extends StatelessWidget {
         width: 45,
         height: 45,
         decoration: BoxDecoration(
-          color: backgroundColor, //Color(0xFF2D2215),
+          color: iconColor.withOpacity(0.2),
           shape: BoxShape.circle,
         ),
         child: Center(
           child: Icon(
             icon,
             color: iconColor,
-            size: 24,
+            size: 30,
           ),
         ),
       );
     } else {
-      return const SizedBox.shrink();
+      return const SizedBox.shrink(); // Hide if no valid icon is provided
     }
   }
 }

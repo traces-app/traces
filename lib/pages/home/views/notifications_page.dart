@@ -21,7 +21,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'icon': CupertinoIcons.arrow_down_left,
         'color': const Color(0xFFCDD93C),
         'timestamp': DateTime.now().subtract(Duration(minutes: 16)),
-        // 16 minutes ago
       },
       {
         'trackingId': 'TX 268 431',
@@ -30,6 +29,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'icon': 'assets/icons/images.png',
         'color': const Color(0xFF73A9E3),
         'timestamp': DateTime.now().subtract(Duration(hours: 2)),
+        'smallIcon': Icons.add,
+        'smallIconColor': const Color(0xFF00112A),
       },
     ],
     'Today': [
@@ -61,19 +62,21 @@ class _NotificationsPageState extends State<NotificationsPage> {
       {
         'trackingId': 'TX 268 431',
         'message': 'Chanel International, added a new shipment linking to you.',
-        'icon': CupertinoIcons.xmark,
+        'icon': 'assets/icons/images.png',
         'color': const Color(0xFF73A9E3),
         'timestamp': DateTime.now().subtract(Duration(days: 1, hours: 2)),
-        // 1 day and 2 hours ago
+        'smallIcon': Icons.add,
+        'smallIconColor': const Color(0xFF00112A),
       },
       {
         'trackingId': 'TX 268 431',
         'message':
             'Starbucks Corporation, added a new shipment linking to you.',
-        'icon': CupertinoIcons.xmark,
+        'icon': 'assets/icons/images.png',
         'color': const Color(0xFF73A9E3),
         'timestamp': DateTime.now().subtract(Duration(days: 1, hours: 3)),
-        // 1 day and 3 hours ago
+        'smallIcon': Icons.add,
+        'smallIconColor': const Color(0xFF00112A),
       },
     ],
     'Earlier': [
@@ -83,7 +86,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Arrived at Colombo Distribution Center and is being prepared for dispatch.',
         'icon': CupertinoIcons.arrow_down_left,
         'color': const Color(0xFFCDD93C),
-        'timestamp': DateTime.now().subtract(Duration(days: 3)), // 3 days ago
+        'timestamp': DateTime.now().subtract(Duration(days: 3)),
       },
       {
         'trackingId': 'TX 268 431',
@@ -91,7 +94,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Shipment has arrived at Kandy Warehouse and is awaiting transfer.',
         'icon': CupertinoIcons.arrow_down_left,
         'color': const Color(0xFFCDD93C),
-        'timestamp': DateTime.now().subtract(Duration(days: 4)), // 4 days ago
+        'timestamp': DateTime.now().subtract(Duration(days: 4)),
       },
     ],
   };
@@ -180,7 +183,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SectionTitle(title: entry.key),
-                    // Using the new SectionTitle widget
                     ...entry.value
                         .map(
                           (notification) => NotificationItem(
@@ -190,14 +192,26 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             iconColor: notification['color'],
                             timestamp: notification['timestamp'],
                             getTimeDifference: _getTimeDifference,
+                            smallIcon: notification.containsKey('smallIcon')
+                                ? notification['smallIcon']
+                                : null,
+                            smallIconColor:
+                                notification.containsKey('smallIconColor')
+                                    ? notification['smallIconColor']
+                                    : null,
                           ),
                         )
                         .toList(),
                   ],
                 );
               },
-              separatorBuilder: (context, index) => const Divider(
-                  thickness: 1, color: Color.fromRGBO(84, 84, 88, 0.35)),
+              separatorBuilder: (context, index) => const Padding(
+                padding: EdgeInsets.symmetric(vertical: 8), // Adds spacing
+                child: Divider(
+                  thickness: 1,
+                  color: Color.fromRGBO(84, 84, 88, 0.35),
+                ),
+              ),
             ),
     );
   }
