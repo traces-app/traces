@@ -66,7 +66,7 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
         _matched = false;
         _enabledClearOptions = true;
         if (widget.textEditingController.text != null) {
-          _matched = widget.textEditingController ==
+          _matched = widget.textEditingController.text ==
               widget.externalTextEditingController!.text;
         }
         _hasValidateError = widget.validator != null &&
