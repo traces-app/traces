@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:traces/shared/widgets/section_title.dart';
 import 'package:traces/shared/widgets/notification_item.dart';
@@ -17,7 +18,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message':
             'Arrived at Kurunegala Warehouse and is being processed for the next transit step.',
-        'icon': Icons.call_received,
+        'icon': CupertinoIcons.arrow_down_left,
         'color': Colors.yellow,
         'timestamp': DateTime.now().subtract(Duration(minutes: 16)),
         // 16 minutes ago
@@ -28,7 +29,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
             'Starbucks Corporation, added a new shipment linking to you.',
         'icon': 'assets/icons/images.png',
         'color': Colors.blue,
-        'timestamp': DateTime.now().subtract(Duration(hours: 2)), // 2 hours ago
+        'timestamp': DateTime.now().subtract(Duration(hours: 2)),
       },
     ],
     'Today': [
@@ -36,26 +37,26 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message':
             'Shipment is out for delivery and will arrive at the destination soon.',
-        'icon': Icons.arrow_forward,
+        'icon': CupertinoIcons.arrow_right,
         'color': Colors.orange,
-        'timestamp': DateTime.now().subtract(Duration(hours: 4)), // 4 hours ago
+        'timestamp': DateTime.now().subtract(Duration(hours: 4)),
       },
       {
         'trackingId': 'TX 268 431',
         'message':
             'UPS Logistics, canceled shipment as the courier was unable to pick up the package.',
-        'icon': Icons.cancel,
+        'icon': CupertinoIcons.xmark,
         'color': Colors.red,
-        'timestamp': DateTime.now().subtract(Duration(hours: 5)), // 5 hours ago
+        'timestamp': DateTime.now().subtract(Duration(hours: 5)),
       },
     ],
     'Yesterday': [
       {
         'trackingId': 'TX 268 431',
         'message': 'Successfully arrived at the destination.',
-        'icon': Icons.check_circle,
+        'icon': CupertinoIcons.checkmark,
         'color': Colors.green,
-        'timestamp': DateTime.now().subtract(Duration(days: 1)), // 1 day ago
+        'timestamp': DateTime.now().subtract(Duration(days: 1)),
       },
       {
         'trackingId': 'TX 268 431',
@@ -80,7 +81,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message':
             'Arrived at Colombo Distribution Center and is being prepared for dispatch.',
-        'icon': Icons.call_received,
+        'icon': CupertinoIcons.arrow_down_left,
         'color': Colors.yellow,
         'timestamp': DateTime.now().subtract(Duration(days: 3)), // 3 days ago
       },
@@ -88,7 +89,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message':
             'Shipment has arrived at Kandy Warehouse and is awaiting transfer.',
-        'icon': Icons.call_received,
+        'icon': CupertinoIcons.arrow_down_left,
         'color': Colors.yellow,
         'timestamp': DateTime.now().subtract(Duration(days: 4)), // 4 days ago
       },
@@ -123,8 +124,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         title: Row(
           children: [
             Container(
-              padding:
-                  const EdgeInsets.only(left: 0), // Moves text more to the left
+              padding: const EdgeInsets.only(left: 0),
               child: const Text(
                 'Notifications',
                 style: TextStyle(
@@ -137,30 +137,26 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 ),
               ),
             ),
-            const SizedBox(width: 15), // Keeps spacing after Notifications
+            const SizedBox(width: 15),
             Container(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical:
-                      4), // Adjusted vertical padding for better proportions
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
               decoration: BoxDecoration(
-                color: const Color(0xFF411C1C), // Dark red background color
-                borderRadius: BorderRadius.circular(
-                    24), // Properly rounded for a pill shape
+                color: const Color(0xFF411C1C),
+                borderRadius: BorderRadius.circular(24),
               ),
               constraints: const BoxConstraints(
-                minWidth: 24, // Ensures minimum size for smaller numbers
-                minHeight: 24, // Keeps the badge circular
+                minWidth: 24,
+                minHeight: 24,
               ),
-              alignment: Alignment.center, // Centers text inside the badge
+              alignment: Alignment.center,
               child: Text(
                 '$notificationCount',
                 style: const TextStyle(
-                  color: Color(0xFFF56666), // Light red text color
-                  fontSize: 20, // Adjusted font size for better readability
+                  color: Color(0xFFF56666),
+                  fontSize: 20,
                   fontWeight: FontWeight.w700,
-                  height: 1.2, // Fixed text height to avoid unnecessary spacing
-                  letterSpacing: 0.35, // Minor adjustment for better spacing
+                  height: 1.2,
+                  letterSpacing: 0.35,
                 ),
               ),
             ),
@@ -193,8 +189,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             icon: notification['icon'],
                             iconColor: notification['color'],
                             timestamp: notification['timestamp'],
-                            getTimeDifference:
-                                _getTimeDifference, // Passing function reference
+                            getTimeDifference: _getTimeDifference,
                           ),
                         )
                         .toList(),

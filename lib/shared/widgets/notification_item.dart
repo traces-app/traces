@@ -30,7 +30,7 @@ class NotificationItem extends StatelessWidget {
         text: TextSpan(
           children: [
             TextSpan(
-              text: trackingId, // Tracking ID in bold
+              text: trackingId,
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Color.fromRGBO(255, 255, 255, 0.8),
@@ -38,7 +38,7 @@ class NotificationItem extends StatelessWidget {
               ),
             ),
             TextSpan(
-              text: "  $timeDifference", // Time difference in lighter text
+              text: "  $timeDifference",
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
                 color: Color.fromRGBO(255, 255, 255, 0.5),
@@ -75,18 +75,20 @@ class NotificationItem extends StatelessWidget {
       return Container(
         width: 45,
         height: 45,
-        decoration: BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.circular(12),
+        decoration: const BoxDecoration(
+          color: Color(0xFF2D2215),
+          shape: BoxShape.circle,
         ),
-        child: Icon(
-          icon,
-          color: iconColor,
-          size: 30,
+        child: Center(
+          child: Icon(
+            icon,
+            color: iconColor,
+            size: 24,
+          ),
         ),
       );
     } else {
-      return SizedBox.shrink();
+      return const SizedBox.shrink();
     }
   }
 }
