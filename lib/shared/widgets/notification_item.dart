@@ -56,22 +56,29 @@ class NotificationItem extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+      contentPadding: const EdgeInsets.fromLTRB(5, 10, 16, 2),
     );
   }
 
   Widget _buildIcon() {
     if (icon is String) {
-      return ClipOval(
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(18),
         child: Image.asset(
           icon,
-          width: 40,
-          height: 40,
+          width: 45,
+          height: 45,
           fit: BoxFit.cover,
         ),
       );
     } else if (icon is IconData) {
-      return ClipOval(
+      return Container(
+        width: 45,
+        height: 45,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(12),
+        ),
         child: Icon(
           icon,
           color: iconColor,

@@ -122,31 +122,45 @@ class _NotificationsPageState extends State<NotificationsPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            const Text('Notifications',
-                style: TextStyle(
-                    fontSize: 34,
-                    fontWeight: FontWeight.w700,
-                    fontStyle: FontStyle.normal,
-                    height: 36.9 / 34,
-                    letterSpacing: 0.337,
-                    fontFamily: "SF Pro Display")),
-            const SizedBox(width: 6),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 2),
-              decoration: BoxDecoration(
-                color: const Color(0xFF411C1C),
-                borderRadius: BorderRadius.circular(22),
+              padding:
+                  const EdgeInsets.only(left: 0), // Moves text more to the left
+              child: const Text(
+                'Notifications',
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.w700,
+                  fontStyle: FontStyle.normal,
+                  height: 36.9 / 34,
+                  letterSpacing: 0.337,
+                  fontFamily: "SF Pro Display",
+                ),
               ),
+            ),
+            const SizedBox(width: 15), // Keeps spacing after Notifications
+            Container(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 10,
+                  vertical:
+                      4), // Adjusted vertical padding for better proportions
+              decoration: BoxDecoration(
+                color: const Color(0xFF411C1C), // Dark red background color
+                borderRadius: BorderRadius.circular(
+                    24), // Properly rounded for a pill shape
+              ),
+              constraints: const BoxConstraints(
+                minWidth: 24, // Ensures minimum size for smaller numbers
+                minHeight: 24, // Keeps the badge circular
+              ),
+              alignment: Alignment.center, // Centers text inside the badge
               child: Text(
                 '$notificationCount',
                 style: const TextStyle(
-                  color: Color(0xFFF56666),
-                  // Light red color
-                  fontSize: 21,
+                  color: Color(0xFFF56666), // Light red text color
+                  fontSize: 20, // Adjusted font size for better readability
                   fontWeight: FontWeight.w700,
-                  height: 38.745 / 21,
-                  // Corrected placement
-                  letterSpacing: 0.353, // Corrected placement
+                  height: 1.2, // Fixed text height to avoid unnecessary spacing
+                  letterSpacing: 0.35, // Minor adjustment for better spacing
                 ),
               ),
             ),
