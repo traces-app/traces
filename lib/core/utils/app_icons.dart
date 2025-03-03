@@ -4,5 +4,10 @@ class AppIcons {
   static const String google = 'assets/icons/google.svg';
   static const String apple = 'assets/icons/apple.svg';
 
+  static const String tickmark = 'assets/icons/checkmark.svg';
+  static const String path = 'assets/icons/path.svg';
+  static const String close = 'assets/icons/close.svg';
+  static const String arrowForward = 'assets/icons/arrow-forward.svg';
+
   // add more icons as needed...
 }
