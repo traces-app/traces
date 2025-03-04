@@ -58,14 +58,13 @@ class NotificationItem extends StatelessWidget {
           fontWeight: FontWeight.w500,
         ),
       ),
-      contentPadding:
-          const EdgeInsets.fromLTRB(5, 10, 16, 10), // Adjusted padding
+      contentPadding: const EdgeInsets.fromLTRB(10, 10, 16, 2),
     );
   }
 
   Widget _buildIcon() {
     return Stack(
-      clipBehavior: Clip.none, // Allows small icon to overlap
+      clipBehavior: Clip.none,
       children: [
         _buildMainIcon(),
         if (smallIcon != null)
@@ -98,8 +97,8 @@ class NotificationItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         child: Image.asset(
           icon,
-          width: 45,
-          height: 45,
+          width: 43,
+          height: 43,
           fit: BoxFit.cover,
         ),
       );

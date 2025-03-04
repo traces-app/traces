@@ -23,12 +23,12 @@ class SectionTitle extends StatelessWidget {
               ),
             ),
             if (title == "New") ...[
-              const SizedBox(width: 6), // Spacing between text and dot
+              const SizedBox(width: 12),
               Container(
-                width: 6, // Size of the dot
-                height: 6,
+                width: 4.4, // Size of the dot
+                height: 4.4,
                 decoration: const BoxDecoration(
-                  color: Color(0xFFF13C3C), // Dark red color for the dot
+                  color: Color.fromRGBO(241, 60, 60, 0.7),
                   shape: BoxShape.circle,
                 ),
               ),

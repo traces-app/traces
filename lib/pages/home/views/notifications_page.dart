@@ -26,7 +26,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message':
             'Starbucks Corporation, added a new shipment linking to you.',
-        'icon': 'assets/icons/images.png',
+        'icon': 'assets/icons/starbucks.png',
         'color': const Color(0xFF73A9E3),
         'timestamp': DateTime.now().subtract(Duration(hours: 2)),
         'smallIcon': Icons.add,
@@ -46,9 +46,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message':
             'UPS Logistics, canceled shipment as the courier was unable to pick up the package.',
-        'icon': CupertinoIcons.xmark,
+        'icon': 'assets/icons/ups.png',
         'color': const Color(0xFFEC3538),
         'timestamp': DateTime.now().subtract(Duration(hours: 5)),
+        'smallIcon': Icons.close,
+        'smallIconColor': const Color(0xFF320304),
       },
     ],
     'Yesterday': [
@@ -72,7 +74,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
         'trackingId': 'TX 268 431',
         'message':
             'Starbucks Corporation, added a new shipment linking to you.',
-        'icon': 'assets/icons/images.png',
+        'icon': 'assets/icons/starbucks.png',
         'color': const Color(0xFF73A9E3),
         'timestamp': DateTime.now().subtract(Duration(days: 1, hours: 3)),
         'smallIcon': Icons.add,
@@ -112,11 +114,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
     final difference = now.difference(timestamp);
 
     if (difference.inMinutes < 60) {
-      return '${difference.inMinutes}m'; // Minutes ago
+      return '${difference.inMinutes}m';
     } else if (difference.inHours < 24) {
-      return '${difference.inHours}h'; // Hours ago
+      return '${difference.inHours}h';
     } else {
-      return '${difference.inDays}d'; // Days ago
+      return '${difference.inDays}d';
     }
   }
 
@@ -206,7 +208,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 );
               },
               separatorBuilder: (context, index) => const Padding(
-                padding: EdgeInsets.symmetric(vertical: 8), // Adds spacing
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: Divider(
                   thickness: 1,
                   color: Color.fromRGBO(84, 84, 88, 0.35),
