@@ -36,7 +36,7 @@ class SearchInputField extends StatelessWidget {
               ),
               decoration: InputDecoration(
                 isCollapsed: true,
-                contentPadding: EdgeInsets.only(bottom: 2.0),
+                contentPadding: EdgeInsets.only(bottom: 1.5),
                 border: InputBorder.none,
                 hintText: "Search",
                 hintStyle: TextStyle(
