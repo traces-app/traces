@@ -9,5 +9,7 @@ class AppIcons {
   static const String close = 'assets/icons/close.svg';
   static const String arrowForward = 'assets/icons/arrow-forward.svg';
 
+  static const String window = 'assets/icons/window.svg';
+
   // add more icons as needed...
 }
