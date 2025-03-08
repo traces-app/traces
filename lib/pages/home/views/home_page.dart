@@ -19,6 +19,7 @@ class _HomePageState extends State<HomePage> {
       children: [
         TopBar(),
         SingleChildScrollView(
+          scrollDirection: Axis.vertical,
           child: Column(
             children: _empty ? [NoContent()] : [Content()],
           ),

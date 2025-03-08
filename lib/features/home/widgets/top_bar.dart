@@ -42,7 +42,7 @@ class _TopBarState extends State<TopBar> {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 8.0),
+          padding: const EdgeInsets.only(top: 8.0, left: 12.0, right: 12.0),
           child: SearchInputField(),
         ),
         SingleChildScrollView(
