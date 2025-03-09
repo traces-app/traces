@@ -18,10 +18,12 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: [
         TopBar(),
-        SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: _empty ? [NoContent()] : [Content()],
+        Expanded(
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(
+              children: _empty ? [NoContent()] : [Content()],
+            ),
           ),
         ),
       ],

@@ -11,5 +11,8 @@ class AppIcons {
 
   static const String window = 'assets/icons/window.svg';
 
+  static const String collapse = 'assets/icons/collapse.svg';
+  static const String chevronRight = 'assets/icons/chevron.right.svg';
+
   // add more icons as needed...
 }
