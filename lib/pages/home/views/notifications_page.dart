@@ -12,15 +12,13 @@ class NotificationsPage extends StatefulWidget {
 class _NotificationsPageState extends State<NotificationsPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        elevation: 0,
-        title: const TitleBar(),
-        centerTitle: false,
-      ),
-      body: const Content(),
+    return Column(
+      children: const [
+        TitleBar(),
+        Expanded(
+          child: Content(),
+        ),
+      ],
     );
   }
 }
