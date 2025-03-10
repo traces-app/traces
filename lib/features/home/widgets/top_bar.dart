@@ -25,7 +25,7 @@ class _TopBarState extends State<TopBar> {
               elevation: 0,
               titleSpacing: 0.0,
               title: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: const Text(
                   'Shipments',
                   style: TextStyle(
