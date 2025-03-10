@@ -23,13 +23,17 @@ class _TopBarState extends State<TopBar> {
             AppBar(
               backgroundColor: Colors.black,
               elevation: 0,
-              title: const Text(
-                'Shipments',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 33,
-                  fontWeight: FontWeight.w700,
-                  letterSpacing: 0.337,
+              titleSpacing: 0.0,
+              title: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                child: const Text(
+                  'Shipments',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 33,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 0.337,
+                  ),
                 ),
               ),
               centerTitle: false,
@@ -42,14 +46,14 @@ class _TopBarState extends State<TopBar> {
           ],
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 8.0, left: 12.0, right: 12.0),
+          padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 10.0),
           child: SearchInputField(),
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Padding(
             padding: const EdgeInsets.only(
-                top: 18.0, left: 12.0, right: 12.0, bottom: 10.0),
+                top: 18.0, left: 9.0, right: 10.0, bottom: 10.0),
             child: const Row(
               spacing: 14.0,
               children: [
