@@ -48,7 +48,8 @@ class _TopBarState extends State<TopBar> {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Padding(
-            padding: const EdgeInsets.only(top: 18.0, left: 12.0, right: 12.0),
+            padding: const EdgeInsets.only(
+                top: 18.0, left: 12.0, right: 12.0, bottom: 10.0),
             child: const Row(
               spacing: 14.0,
               children: [

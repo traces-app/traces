@@ -16,7 +16,7 @@ class _ContentState extends State<Content> {
     return Column(
       spacing: 35.0,
       children: const [
-        SizedBox(height: 15.0),
+        SizedBox(height: 3.0),
         ShipmentGroup(
           group: Group.outForDelivery,
           children: [
