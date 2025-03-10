@@ -6,8 +6,17 @@ import '../views/home_page.dart';
 import '../views/notifications_page.dart';
 import '../views/account_page.dart';
 
-class BaseLayout extends StatelessWidget {
+class BaseLayout extends StatefulWidget {
   const BaseLayout({super.key});
+
+  static const _notifications = false;
+
+  @override
+  State<BaseLayout> createState() => _BaseLayoutState();
+}
+
+class _BaseLayoutState extends State<BaseLayout> {
+  int _selectedIndex = 0;
 
   static const _pages = [
     HomePage(),
@@ -16,34 +25,31 @@ class BaseLayout extends StatelessWidget {
   ];
 
   static const _tabPadding =
-      EdgeInsetsDirectional.only(top: 7, start: 22, end: 21);
-
-  static const _notifications = false;
+      EdgeInsetsDirectional.only(top: 10, start: 22, end: 21);
 
   @override
   Widget build(BuildContext context) {
-    return CupertinoTabScaffold(
-      tabBar: CupertinoTabBar(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      bottomNavigationBar: CupertinoTabBar(
         backgroundColor: const Color.fromRGBO(22, 22, 22, 0.94),
-        activeColor: const Color.fromRGBO(10, 132, 255, 1),
+        activeColor: const Color(0xff0A84FF),
         inactiveColor: const Color.fromRGBO(136, 136, 136, 1),
         height: 60,
+        currentIndex: _selectedIndex,
         items: _buildTabItems(),
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
-      tabBuilder: (context, index) {
-        return CupertinoPageScaffold(
-          backgroundColor: Colors.black,
-          navigationBar: CupertinoNavigationBar(
-            middle: Text(
-              ['Home', 'Notifications', 'Account'][index],
-              style: const TextStyle(
-                  fontWeight: FontWeight.w600, fontFamily: 'SFProDisplay'),
-            ),
-            padding: _tabPadding,
-          ),
-          child: SafeArea(child: _pages[index]),
-        );
-      },
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 26),
+          child: _pages[_selectedIndex],
+        ),
+      ),
     );
   }
 
@@ -64,7 +70,7 @@ class BaseLayout extends StatelessWidget {
               padding: _tabPadding,
               child: Icon(CupertinoIcons.tray, size: 28),
             ),
-            _notifications
+            BaseLayout._notifications
                 ? Positioned(
                     right: 12,
                     top: 6,
