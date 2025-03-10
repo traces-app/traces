@@ -9,11 +9,11 @@ class Content extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        const SizedBox(height: 30.0),
+        const SizedBox(height: 20.0),
         Column(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -47,7 +47,7 @@ class Content extends StatelessWidget {
                         identifier: "TX 268 431",
                         timestamp: "16m",
                         description:
-                            "Arrived at Kurunegala Warehouse and is being processed for the next transit step.",
+                            "Arrived at Anuradhapura Warehouse and is being processed for the next transit step.",
                       ),
                       NotificationItem(
                         type: NotificationType.shipmentCreated,
@@ -69,25 +69,44 @@ class Content extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 10.0),
-        const Column(
-          children: [
+        Column(
+          children: const [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0),
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "Today",
-                    style: TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromRGBO(255, 255, 255, 0.5),
-                      letterSpacing: -0.5,
-                    ),
+                  Row(
+                    children: [
+                      Text(
+                        "Earlier",
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromRGBO(255, 255, 255, 0.5),
+                          letterSpacing: -0.5,
+                        ),
+                      ),
+                    ],
                   ),
                   SizedBox(height: 10.0),
                   Column(
                     children: [
+                      NotificationItem(
+                        type: NotificationType.arrived,
+                        identifier: "TX 268 431",
+                        timestamp: "16m",
+                        description:
+                            "Arrived at Kurunegala Warehouse and is being processed for the next transit step.",
+                      ),
+                      NotificationItem(
+                        type: NotificationType.delivered,
+                        iconImageUrl: "assets/icons/starbucks.png",
+                        identifier: "TX 268 431",
+                        timestamp: "1d",
+                        description:
+                            "Your shipment has been successfully delivered to its destination.",
+                      ),
                       NotificationItem(
                         type: NotificationType.outForDelivery,
                         identifier: "TX 268 431",
@@ -98,87 +117,10 @@ class Content extends StatelessWidget {
                       NotificationItem(
                         type: NotificationType.arrived,
                         identifier: "TX 268 431",
-                        timestamp: "4h",
+                        timestamp: "16m",
                         description:
-                            "Arrived at Colombo Distribution Center and is being prepared for dispatch",
+                            "Arrived at Colombo Distribution Center and is being prepared for dispatch.",
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              thickness: 1,
-              color: Color.fromRGBO(84, 84, 88, 0.4),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10.0),
-        const Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Yesterday",
-                    style: TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromRGBO(255, 255, 255, 0.5),
-                      letterSpacing: -0.5,
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Column(
-                    children: [
-                      NotificationItem(
-                        type: NotificationType.delivered,
-                        iconImageUrl: "assets/icons/starbucks.png",
-                        identifier: "TX 268 431",
-                        timestamp: "1d",
-                        description:
-                            "Your shipment has been successfully delivered to its destination.",
-                      ),
-                      NotificationItem(
-                        type: NotificationType.arrived,
-                        identifier: "TX 268 431",
-                        timestamp: "1d",
-                        description:
-                            "Arrived at Kurunegala Warehouse and is being processed for the next transit step.",
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Divider(
-              thickness: 1,
-              color: Color.fromRGBO(84, 84, 88, 0.4),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10.0),
-        const Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Earlier",
-                    style: TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromRGBO(255, 255, 255, 0.5),
-                      letterSpacing: -0.5,
-                    ),
-                  ),
-                  SizedBox(height: 10.0),
-                  Column(
-                    children: [
                       NotificationItem(
                         type: NotificationType.arrived,
                         identifier: "TX 268 431",
@@ -191,9 +133,9 @@ class Content extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 50.0),
           ],
         ),
+        SizedBox(height: 30.0),
       ],
     );
   }

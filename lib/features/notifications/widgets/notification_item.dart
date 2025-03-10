@@ -123,7 +123,7 @@ class NotificationItem extends StatelessWidget {
                   description,
                   style: const TextStyle(
                     color: Color.fromRGBO(255, 255, 255, 0.9),
-                    fontSize: 16.5,
+                    fontSize: 17,
                     fontWeight: FontWeight.w500,
                     letterSpacing: -0.5,
                   ),
