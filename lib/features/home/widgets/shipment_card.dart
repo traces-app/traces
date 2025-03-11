@@ -33,8 +33,7 @@ class ShipmentCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ShipmentDetailsPage(
-            ),
+            builder: (context) => ShipmentDetailsPage(),
           ),
         );
       },
@@ -63,8 +62,8 @@ class ShipmentCard extends StatelessWidget {
                                 color: (type == Group.canceled)
                                     ? Color(0xFFEDC9C9)
                                     : (type == Group.delivered)
-                                    ? Color(0xFFC3EEC2)
-                                    : Colors.white,
+                                        ? Color(0xFFC3EEC2)
+                                        : Colors.white,
                               ),
                             ),
                             SizedBox(width: 16),
@@ -87,13 +86,15 @@ class ShipmentCard extends StatelessWidget {
                                     color: (type == Group.canceled)
                                         ? Color.fromRGBO(237, 201, 201, 0.6)
                                         : (type == Group.delivered)
-                                        ? Color.fromRGBO(195, 238, 194, 0.6)
-                                        : Color.fromRGBO(255, 255, 255, 0.7),
+                                            ? Color.fromRGBO(195, 238, 194, 0.6)
+                                            : Color.fromRGBO(
+                                                255, 255, 255, 0.7),
                                   ),
                                 ),
                               ],
                             ),
-                            if (type == Group.canceled || type == Group.delivered)
+                            if (type == Group.canceled ||
+                                type == Group.delivered)
                               SvgPicture.asset(
                                 type.iconPath!,
                                 height: 12.0,
@@ -127,8 +128,8 @@ class ShipmentCard extends StatelessWidget {
                                 color: (type == Group.canceled)
                                     ? Color.fromRGBO(237, 201, 201, 0.6)
                                     : (type == Group.delivered)
-                                    ? Color.fromRGBO(176, 219, 175, 0.6)
-                                    : Color.fromRGBO(255, 255, 255, 0.6),
+                                        ? Color.fromRGBO(176, 219, 175, 0.6)
+                                        : Color.fromRGBO(255, 255, 255, 0.6),
                               ),
                             ),
                             SizedBox(width: 12),
@@ -141,8 +142,8 @@ class ShipmentCard extends StatelessWidget {
                                 color: (type == Group.canceled)
                                     ? Color.fromRGBO(237, 201, 201, 0.6)
                                     : (type == Group.delivered)
-                                    ? Color.fromRGBO(176, 219, 175, 0.6)
-                                    : Color.fromRGBO(255, 255, 255, 0.6),
+                                        ? Color.fromRGBO(176, 219, 175, 0.6)
+                                        : Color.fromRGBO(255, 255, 255, 0.6),
                               ),
                             ),
                           ],
