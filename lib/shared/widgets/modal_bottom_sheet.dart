@@ -30,26 +30,20 @@ class ModalBottomSheet extends StatelessWidget {
       clipBehavior: Clip.antiAlias,
       child: Stack(
         children: [
+          // content
           Container(
             margin: EdgeInsets.only(bottom: 36.0),
             width: double.infinity,
             // color: Colors.red, /* (toggle the comment to view the content area) */
             child: child,
           ),
+
+          // handle
           Positioned(
             top: 6.0,
             left: 0,
             right: 0,
-            child: Center(
-              child: Container(
-                height: 5.0,
-                width: 35.0,
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(60, 60, 67, 0.5),
-                  borderRadius: BorderRadius.circular(10.0),
-                ),
-              ),
-            ),
+            child: Handle(),
           ),
 
           // actions
@@ -67,6 +61,24 @@ class ModalBottomSheet extends StatelessWidget {
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class Handle extends StatelessWidget {
+  const Handle({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        height: 5.0,
+        width: 35.0,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(60, 60, 67, 0.5),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
       ),
     );
   }
