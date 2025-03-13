@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:traces/pages/map/views/maps_page.dart';
 import 'package:traces/pages/shipment/views/edit/view_shipping_info_view.dart';
+import 'package:traces/pages/shipment/views/returns/eligibility_view.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 
 class OptionsView extends StatelessWidget {
@@ -41,6 +42,15 @@ class OptionsView extends StatelessWidget {
                   modal?.navigateTo(ViewShippingInformationView());
                 },
                 child: Text("Edit Shipping Address"),
+              ),
+              SizedBox(height: 5.0), // Spacing between buttons
+              ElevatedButton(
+                onPressed: () {
+                  final modal =
+                      context.findAncestorStateOfType<ModalBottomSheetState>();
+                  modal?.navigateTo(EligibilityView());
+                },
+                child: Text("Report a Return"),
               ),
             ],
           ),
