@@ -36,7 +36,9 @@ class _ContainerBarState extends State<ContainerBar> {
       capsAndNumCheck,
       textLengthCheck10,
       textLengthCheck15
-    ].map((condition) => condition ? Color(0xFFA8A972) : Color(0xFF7A7A7A)).toList();
+    ]
+        .map((condition) => condition ? Color(0xFFA8A972) : Color(0xFF7A7A7A))
+        .toList();
 
     if (newColors.toString() != containerColors.toString()) {
       setState(() {

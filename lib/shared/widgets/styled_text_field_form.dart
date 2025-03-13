@@ -2,18 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StyledTextFormField extends StatefulWidget {
-  const StyledTextFormField({
-    super.key,
-    required this.placeholder,
-    required this.textEditingController,
-    this.type = "text", // "text" (default) | "email" | "password" | "number"
-    this.focused = false,
-    this.compare,
-    this.onSubmitted,
-    this.externalTextEditingController,
-    this.validator
-
-  });
+  const StyledTextFormField(
+      {super.key,
+      required this.placeholder,
+      required this.textEditingController,
+      this.type = "text", // "text" (default) | "email" | "password" | "number"
+      this.focused = false,
+      this.compare,
+      this.onSubmitted,
+      this.externalTextEditingController,
+      this.validator});
 
   // required initial state
   final String placeholder;
@@ -29,7 +27,6 @@ class StyledTextFormField extends StatefulWidget {
 }
 
 class _StyledTextFormFieldState extends State<StyledTextFormField> {
-
   bool _enabledClearOptions = false;
   bool _matched = false;
   bool _obscureText = false;
@@ -41,10 +38,9 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
     super.initState();
     _enabledClearOptions = widget.type.toLowerCase() == "password";
     _obscureText = widget.type.toLowerCase() == "password";
-    if(widget.externalTextEditingController != null) {
+    if (widget.externalTextEditingController != null) {
       widget.externalTextEditingController!.addListener(handleOnChange);
     }
-
   }
 
   TextInputType _getKeyboardType() {
@@ -70,17 +66,15 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
               widget.externalTextEditingController!.text;
         }
         _hasValidateError = widget.validator != null &&
-            widget.validator!(widget.textEditingController.text) != null || validationMessage != null;
-
+                widget.validator!(widget.textEditingController.text) != null ||
+            validationMessage != null;
       });
-
     } else {
       setState(() {
         if (widget.type != "password") {
           _enabledClearOptions = false;
         }
-        if(  validationMessage == null)
-        _hasValidateError = false;
+        if (validationMessage == null) _hasValidateError = false;
       });
     }
   }
@@ -107,7 +101,7 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
                     curve: Curves.easeInOut,
                     decoration: BoxDecoration(
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
-                     // color: Colors.transparent
+                      // color: Colors.transparent
                       color: (isFocused && !_hasValidateError)
                           ? const Color(0xFF51A2FD).withOpacity(0.2)
                           : Colors.transparent,
@@ -121,7 +115,7 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
                     enableSuggestions: true,
                     autofocus: widget.focused,
                     validator: (value) {
-                       validationMessage = widget.validator?.call(value);
+                      validationMessage = widget.validator?.call(value);
                       setState(() {
                         _hasValidateError = validationMessage != null;
                       });
@@ -164,79 +158,79 @@ class _StyledTextFormFieldState extends State<StyledTextFormField> {
                             children: [
                               widget.type.toLowerCase() != "password"
                                   ? Container(
-                                color: Colors.transparent,
-                                child: GestureDetector(
-                                  behavior: HitTestBehavior.translucent,
-                                  onTap: () {
-                                    widget.textEditingController.clear();
-                                    setState(() {
-                                      _enabledClearOptions = false;
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        right: 3, bottom: 1),
-                                    child: Icon(
-                                      CupertinoIcons.clear_circled_solid,
-                                      size: 19,
-                                      color:
-                                      Colors.white.withOpacity(0.3),
-                                    ),
-                                  ),
-                                ),
-                              )
+                                      color: Colors.transparent,
+                                      child: GestureDetector(
+                                        behavior: HitTestBehavior.translucent,
+                                        onTap: () {
+                                          widget.textEditingController.clear();
+                                          setState(() {
+                                            _enabledClearOptions = false;
+                                          });
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 3, bottom: 1),
+                                          child: Icon(
+                                            CupertinoIcons.clear_circled_solid,
+                                            size: 19,
+                                            color:
+                                                Colors.white.withOpacity(0.3),
+                                          ),
+                                        ),
+                                      ),
+                                    )
                                   : GestureDetector(
-                                behavior: HitTestBehavior.translucent,
-                                onTap: () {
-                                  if (widget.type.toLowerCase() ==
-                                      "password") {
-                                    setState(() {
-                                      _obscureText = !_obscureText;
-                                    });
-                                  } else {
-                                    widget.textEditingController.clear();
-                                    setState(() {
-                                      _enabledClearOptions = false;
-                                    });
-                                  }
-                                },
-                                child: Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: 3, bottom: 1),
-                                  child: Icon(
-                                    _obscureText
-                                        ? CupertinoIcons.eye_slash_fill
-                                        : CupertinoIcons.eye_fill,
-                                    size: 20,
-                                    color: Colors.white.withOpacity(0.5),
-                                  ),
-                                ),
-                              ),
+                                      behavior: HitTestBehavior.translucent,
+                                      onTap: () {
+                                        if (widget.type.toLowerCase() ==
+                                            "password") {
+                                          setState(() {
+                                            _obscureText = !_obscureText;
+                                          });
+                                        } else {
+                                          widget.textEditingController.clear();
+                                          setState(() {
+                                            _enabledClearOptions = false;
+                                          });
+                                        }
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: 3, bottom: 1),
+                                        child: Icon(
+                                          _obscureText
+                                              ? CupertinoIcons.eye_slash_fill
+                                              : CupertinoIcons.eye_fill,
+                                          size: 20,
+                                          color: Colors.white.withOpacity(0.5),
+                                        ),
+                                      ),
+                                    ),
                               AnimatedSwitcher(
                                 duration: const Duration(milliseconds: 400),
                                 switchInCurve: Curves.ease,
                                 transitionBuilder: (
-                                    Widget child,
-                                    Animation<double> animation,
-                                    ) {
+                                  Widget child,
+                                  Animation<double> animation,
+                                ) {
                                   return SizeTransition(
                                     sizeFactor: animation,
                                     axis: Axis.horizontal,
                                     axisAlignment:
-                                    -1.0, // Align animation direction
+                                        -1.0, // Align animation direction
                                     child: child,
                                   );
                                 },
                                 child: _matched
                                     ? Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 14, right: 15),
-                                  child: Icon(
-                                    CupertinoIcons.checkmark,
-                                    size: 19,
-                                    color: Colors.green.withOpacity(0.8),
-                                  ),
-                                )
+                                        padding: const EdgeInsets.only(
+                                            left: 14, right: 15),
+                                        child: Icon(
+                                          CupertinoIcons.checkmark,
+                                          size: 19,
+                                          color: Colors.green.withOpacity(0.8),
+                                        ),
+                                      )
                                     : const SizedBox.shrink(),
                               ),
                             ],

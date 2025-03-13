@@ -12,7 +12,6 @@ class ChangePasswordPage extends StatefulWidget {
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
-
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -58,82 +57,78 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return AuthenticationLayout(
-      children: [
-        GestureDetector(
-          onTap: () {
-            FocusScope.of(context).requestFocus(FocusNode());
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              IconButton(
+    return AuthenticationLayout(children: [
+      GestureDetector(
+        onTap: () {
+          FocusScope.of(context).requestFocus(FocusNode());
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            IconButton(
                 alignment: Alignment.centerRight,
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                icon: Icon(Icons.arrow_back)
+                icon: Icon(Icons.arrow_back)),
+            SizedBox(height: 10),
+            Text(
+              'Reset Your Password',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 17,
+                color: Colors.white,
               ),
-              SizedBox(height: 10),
-              Text(
-                'Reset Your Password',
+              textAlign: TextAlign.left,
+            ),
+            SizedBox(height: 25),
+            StyledTextFormField(
+              placeholder: "New Password",
+              textEditingController: newPasswordController,
+              // validator: validateNewPassword,
+              type: "password",
+            ),
+            if (newPasswordController.text.isNotEmpty) ...[
+              SizedBox(height: 27),
+              ContainerBar(newPasswordController: newPasswordController),
+              SizedBox(height: 27),
+            ] else ...[
+              SizedBox(height: 27),
+            ],
+            StyledTextFormField(
+              placeholder: "Confirm New Password",
+              textEditingController: confirmPasswordController,
+              externalTextEditingController: newPasswordController,
+              //  validator: validateConfirmPassword,
+              type: "password",
+            ),
+            SizedBox(height: 41),
+            ElevatedButton(
+              onPressed: validateTextFields,
+              child: Text(
+                "Reset Password",
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
                   fontSize: 17,
-                  color: Colors.white,
+                  color: Colors.black,
                 ),
-                textAlign: TextAlign.left,
               ),
-              SizedBox(height: 25),
-              StyledTextFormField(
-                placeholder: "New Password",
-                textEditingController: newPasswordController,
-               // validator: validateNewPassword,
-                type: "password",
-              ),
-              if (newPasswordController.text.isNotEmpty) ...[
-                SizedBox(height: 27),
-                ContainerBar(newPasswordController: newPasswordController),
-                SizedBox(height: 27),
-              ] else ...[
-                SizedBox(height: 27),
-              ],
-              StyledTextFormField(
-                placeholder: "Confirm New Password",
-                textEditingController: confirmPasswordController,
-                externalTextEditingController: newPasswordController,
-              //  validator: validateConfirmPassword,
-                type: "password",
-              ),
-              SizedBox(height: 41),
-              ElevatedButton(
-                onPressed: validateTextFields,
-                child: Text(
-                  "Reset Password",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17,
-                    color: Colors.black,
-                  ),
-                ),
-                style: ButtonStyle(
-                  padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                  backgroundColor: MaterialStateProperty.all(Color(0xFFD9D9D9)),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
+              style: ButtonStyle(
+                padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                backgroundColor: MaterialStateProperty.all(Color(0xFFD9D9D9)),
+                shape: MaterialStateProperty.all(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      ]
-    );
+      ),
+    ]);
   }
 }
