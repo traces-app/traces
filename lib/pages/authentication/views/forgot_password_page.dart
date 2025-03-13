@@ -4,14 +4,14 @@ import 'package:traces/pages/authentication/authentication.dart';
 import 'package:traces/shared/widgets/password_strength_depiction.dart';
 import 'package:traces/shared/widgets/styled_text_field_form.dart';
 
-class ChangePasswordPage extends StatefulWidget {
-  ChangePasswordPage({super.key});
+class ForgotPasswordPage extends StatefulWidget {
+  ForgotPasswordPage({super.key});
 
   @override
-  State<ChangePasswordPage> createState() => _ChangePasswordPageState();
+  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
 }
 
-class _ChangePasswordPageState extends State<ChangePasswordPage> {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   TextEditingController newPasswordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
