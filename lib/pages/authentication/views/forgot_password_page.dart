@@ -5,7 +5,7 @@ import 'package:traces/shared/widgets/password_strength_depiction.dart';
 import 'package:traces/shared/widgets/styled_text_field_form.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
-  ForgotPasswordPage({super.key});
+  const ForgotPasswordPage({super.key});
 
   @override
   State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
