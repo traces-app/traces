@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:traces/pages/map/views/maps_page.dart';
+import 'package:traces/pages/shipment/views/options/options_view.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 
 class ShipmentDetailsPage extends StatefulWidget {
@@ -13,6 +13,7 @@ class ShipmentDetailsPage extends StatefulWidget {
 class _ShipmentDetailsPageState extends State<ShipmentDetailsPage> {
   @override
   Widget build(BuildContext context) {
+    // TODO: Start replacing content from here
     return Scaffold(
       appBar: CupertinoNavigationBar(
         padding: EdgeInsetsDirectional.all(0.0),
@@ -39,7 +40,7 @@ class _ShipmentDetailsPageState extends State<ShipmentDetailsPage> {
               context: context,
               builder: (context) => ModalBottomSheet(
                 /* content starts here */
-                child: InitialContent(),
+                child: OptionsView(),
                 /* content ends here */
               ),
             );
@@ -55,82 +56,6 @@ class _ShipmentDetailsPageState extends State<ShipmentDetailsPage> {
       body: Container(
         color: Colors.black,
       ),
-    );
-  }
-}
-
-class InitialContent extends StatelessWidget {
-  const InitialContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 26.0),
-          child: Column(
-            children: [
-              ElevatedButton(
-                onPressed: () async {
-                  final rootContext = Navigator.of(context, rootNavigator: true)
-                      .context; // capture safe context
-
-                  Navigator.of(context, rootNavigator: true).pop();
-                  await Future.delayed(
-                      Duration(milliseconds: 500)); // Add delay
-                  if (rootContext.mounted) {
-                    Navigator.of(rootContext).push(
-                      CupertinoPageRoute(builder: (context) => MapPage()),
-                    );
-                  }
-                },
-                child: Text("Map View"),
-              ),
-              SizedBox(height: 5.0), // Spacing between buttons
-              ElevatedButton(
-                onPressed: () {
-                  final modal =
-                      context.findAncestorStateOfType<ModalBottomSheetState>();
-                  modal?.navigateTo(SecondContent());
-                },
-                child: Text("Edit Shipping Address"),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class SecondContent extends StatelessWidget {
-  const SecondContent({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 26.0),
-          child: Column(
-            children: [
-              Text("Edit Shipping Information",
-                  style: TextStyle(fontSize: 18.0)),
-              SizedBox(height: 10.0),
-              ElevatedButton(
-                onPressed: () {
-                  final modal =
-                      context.findAncestorStateOfType<ModalBottomSheetState>();
-                  modal?.navigateTo(InitialContent());
-                },
-                child: Text("Edit Address"),
-              ),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
