@@ -51,12 +51,21 @@ class ModalBottomSheetState extends State<ModalBottomSheet> {
         children: [
           // content
           AnimatedSize(
-            duration: Duration(milliseconds: 260),
+            duration: Duration(milliseconds: 200),
             child: Container(
               margin: EdgeInsets.only(bottom: 36.0),
               width: double.infinity,
               // color: Colors.red, /* (toggle the comment to view the content area) */
-              child: _current,
+              child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 300),
+                transitionBuilder: (child, animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+                child: _current,
+              ),
             ),
           ),
 
