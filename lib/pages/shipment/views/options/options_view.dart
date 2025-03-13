@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:traces/pages/map/views/maps_page.dart';
+import 'package:traces/pages/map/views/map_page.dart';
 import 'package:traces/pages/shipment/views/edit/view_shipping_info_view.dart';
 import 'package:traces/pages/shipment/views/returns/eligibility_view.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';

@@ -34,7 +34,7 @@ class _MapPageState extends State<MapPage> {
         trailing: IconButton(
           onPressed: () {},
           icon: Icon(
-            CupertinoIcons.ellipsis_circle,
+            CupertinoIcons.search,
             size: 24.0,
             color: Color(0xFF0A84FF),
           ),
