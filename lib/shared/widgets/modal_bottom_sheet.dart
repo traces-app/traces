@@ -50,11 +50,14 @@ class ModalBottomSheetState extends State<ModalBottomSheet> {
       child: Stack(
         children: [
           // content
-          Container(
-            margin: EdgeInsets.only(bottom: 36.0),
-            width: double.infinity,
-            // color: Colors.red, /* (toggle the comment to view the content area) */
-            child: _current,
+          AnimatedSize(
+            duration: Duration(milliseconds: 260),
+            child: Container(
+              margin: EdgeInsets.only(bottom: 36.0),
+              width: double.infinity,
+              // color: Colors.red, /* (toggle the comment to view the content area) */
+              child: _current,
+            ),
           ),
 
           // handle
