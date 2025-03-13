@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:traces/features/home/widgets/filter_option.dart';
 import 'package:traces/pages/home/views/add_shipment/add_shipment_manual_view.dart';
+import 'package:traces/pages/search/views/search_page.dart';
+import 'package:traces/pages/shipment/views/shipment_details_page.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 import 'package:traces/shared/widgets/search_input_field.dart';
 
@@ -49,7 +52,17 @@ class _TopBarState extends State<TopBar> {
         ),
         Padding(
           padding: const EdgeInsets.only(top: 8.0, left: 8.0, right: 10.0),
-          child: SearchInputField(),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const SearchPage(),
+                ),
+              );
+            },
+            child: SearchInputField(),
+          ),
         ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,

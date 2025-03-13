@@ -46,6 +46,7 @@ class SearchInputField extends StatelessWidget {
         letterSpacing: -0.41,
         color: Colors.white,
       ),
+      enabled: false,
     );
   }
 }
