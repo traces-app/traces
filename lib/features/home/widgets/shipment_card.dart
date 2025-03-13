@@ -32,8 +32,8 @@ class ShipmentCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(
-            builder: (context) => ShipmentDetailsPage(),
+          CupertinoPageRoute(
+            builder: (context) => const ShipmentDetailsPage(),
           ),
         );
       },

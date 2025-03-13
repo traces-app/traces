@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:traces/core/utils/app_icons.dart';
 
-class ModalBottomSheet extends StatelessWidget {
+class ModalBottomSheet extends StatefulWidget {
   final Widget child;
 
   final Color background;
@@ -16,6 +16,25 @@ class ModalBottomSheet extends StatelessWidget {
     this.showCloseButton = false,
     this.actions,
   });
+
+  @override
+  State<ModalBottomSheet> createState() => ModalBottomSheetState();
+}
+
+class ModalBottomSheetState extends State<ModalBottomSheet> {
+  Widget? _current;
+
+  void navigateTo(Widget view) {
+    setState(() {
+      _current = view;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _current = widget.child;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +54,7 @@ class ModalBottomSheet extends StatelessWidget {
             margin: EdgeInsets.only(bottom: 36.0),
             width: double.infinity,
             // color: Colors.red, /* (toggle the comment to view the content area) */
-            child: child,
+            child: _current,
           ),
 
           // handle
@@ -54,8 +73,8 @@ class ModalBottomSheet extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: [
-                  if (showCloseButton) CloseButton(),
-                  if (actions != null) ...actions!,
+                  if (widget.showCloseButton) CloseButton(),
+                  if (widget.actions != null) ...widget.actions!,
                 ],
               ),
             ),
