@@ -2,9 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // linked pages
-import '../views/home_page.dart';
-import '../views/notifications_page.dart';
-import '../views/account_page.dart';
+import 'package:traces/pages/account/views/account_page.dart';
+import 'package:traces/pages/home/views/home_page.dart';
+import 'package:traces/pages/notifications/views/notifications_page.dart';
+
+// linked pages
 
 class BaseLayout extends StatefulWidget {
   const BaseLayout({super.key});
