@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:traces/features/home/widgets/filter_option.dart';
 import 'package:traces/pages/home/views/add_shipment/add_shipment_manual_view.dart';
 import 'package:traces/pages/search/views/search_page.dart';
-import 'package:traces/pages/shipment/views/shipment_details_page.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 import 'package:traces/shared/widgets/search_input_field.dart';
 
