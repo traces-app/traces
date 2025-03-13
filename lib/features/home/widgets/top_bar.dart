@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:traces/features/home/widgets/filter_option.dart';
+import 'package:traces/pages/home/views/add_shipment/add_shipment_manual_view.dart';
+import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 import 'package:traces/shared/widgets/search_input_field.dart';
 
 class TopBar extends StatefulWidget implements PreferredSizeWidget {
@@ -78,7 +80,16 @@ class ActionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        showModalBottomSheet(
+          context: context,
+          builder: (context) => ModalBottomSheet(
+            /* content starts here */
+            child: AddShipmentManualView(),
+            /* content ends here */
+          ),
+        );
+      },
       child: Container(
         width: 29,
         height: 29,
