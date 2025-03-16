@@ -1,16 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ContainerBar extends StatefulWidget {
+class PasswordStrengthMeter extends StatefulWidget {
   final TextEditingController newPasswordController;
-  ContainerBar({required this.newPasswordController, super.key});
+  const PasswordStrengthMeter({required this.newPasswordController, super.key});
 
   @override
-  State<ContainerBar> createState() => _ContainerBarState();
+  State<PasswordStrengthMeter> createState() => _PasswordStrengthMeterState();
 }
 
-class _ContainerBarState extends State<ContainerBar> {
-  List<Color> containerColors = List.generate(5, (index) => Color(0xFF7A7A7A));
+class _PasswordStrengthMeterState extends State<PasswordStrengthMeter> {
+  List<Color> containerColors =
+      List.generate(5, (index) => const Color(0xFF7A7A7A));
 
   @override
   void initState() {
@@ -37,7 +38,8 @@ class _ContainerBarState extends State<ContainerBar> {
       textLengthCheck10,
       textLengthCheck15
     ]
-        .map((condition) => condition ? Color(0xFFA8A972) : Color(0xFF7A7A7A))
+        .map((condition) =>
+            condition ? const Color(0xFFA8A972) : const Color(0xFF7A7A7A))
         .toList();
 
     if (newColors.toString() != containerColors.toString()) {
@@ -51,12 +53,12 @@ class _ContainerBarState extends State<ContainerBar> {
   Widget build(BuildContext context) {
     changingColors();
     return Container(
-      margin: EdgeInsets.only(top: 10, bottom: 20),
+      margin: const EdgeInsets.only(top: 10, bottom: 20),
       child: Row(
         children: List.generate(5, (index) {
           return Flexible(
             child: Container(
-              margin: EdgeInsets.symmetric(horizontal: 5),
+              margin: const EdgeInsets.symmetric(horizontal: 5),
               height: 5,
               decoration: BoxDecoration(color: containerColors[index]),
             ),
