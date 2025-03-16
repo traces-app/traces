@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:traces/pages/authentication/authentication.dart';
-import 'package:traces/shared/widgets/password_strength_depiction.dart';
-import 'package:traces/shared/widgets/styled_text_field_form.dart';
+import 'package:traces/shared/widgets/styled_text_field.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});
@@ -59,76 +58,70 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    return AuthenticationLayout(children: [
-      GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            IconButton(
-                alignment: Alignment.centerRight,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(Icons.arrow_back)),
-            SizedBox(height: 10),
-            Text(
-              'Reset Your Password',
-              style: TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 17,
-                color: Colors.white,
-              ),
-              textAlign: TextAlign.left,
+    return AuthenticationLayout(
+      children: [
+        const Padding(
+          padding: EdgeInsets.only(left: 5.0),
+          child: Text(
+            "Reset Your Password",
+            style: TextStyle(
+              fontSize: 19.0,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
             ),
-            SizedBox(height: 25),
-            StyledTextFormField(
-              placeholder: "New Password",
-              textEditingController: newPasswordController,
-              // validator: validateNewPassword,
-              type: "password",
-            ),
-            if (newPasswordController.text.isNotEmpty) ...[
-              SizedBox(height: 27),
-              ContainerBar(newPasswordController: newPasswordController),
-              SizedBox(height: 27),
-            ] else ...[
-              SizedBox(height: 27),
-            ],
-            StyledTextFormField(
-              placeholder: "Confirm New Password",
-              textEditingController: confirmPasswordController,
-              externalTextEditingController: newPasswordController,
-              //  validator: validateConfirmPassword,
-              type: "password",
-            ),
-            SizedBox(height: 41),
-            ElevatedButton(
-              onPressed: validateTextFields,
-              child: Text(
-                "Reset Password",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 17,
-                  color: Colors.black,
-                ),
-              ),
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                backgroundColor: MaterialStateProperty.all(Color(0xFFD9D9D9)),
-                shape: MaterialStateProperty.all(
-                  RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
-      ),
-    ]);
+        const Padding(
+          padding: EdgeInsets.only(top: 21.0),
+          child: StyledTextField(
+            type: "password",
+            placeholder: "New Password",
+            focused: true,
+          ),
+        ),
+        const Padding(
+          padding: EdgeInsets.only(top: 25.0),
+          child: StyledTextField(
+            type: "password",
+            placeholder: "Confirm New Password",
+            focused: true,
+          ),
+        ),
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.only(top: 36.0),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.white.withOpacity(0.9),
+              foregroundColor: Colors.black,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 11,
+              ),
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(18),
+                ),
+              ),
+            ),
+            child: const Text(
+              "Reset Password",
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => const PasswordPage(),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
   }
 }
