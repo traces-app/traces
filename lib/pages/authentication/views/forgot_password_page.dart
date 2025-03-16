@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:traces/pages/authentication/authentication.dart';
+import 'package:traces/shared/widgets/password_strength_depiction.dart';
 import 'package:traces/shared/widgets/styled_text_field.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
@@ -71,20 +72,24 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 21.0),
+        Padding(
+          padding: const EdgeInsets.only(top: 21.0),
           child: StyledTextField(
             type: "password",
             placeholder: "New Password",
             focused: true,
+            controller: newPasswordController,
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 25.0),
+        const SizedBox(height: 10.0),
+        ContainerBar(newPasswordController: newPasswordController),
+        Padding(
+          padding: const EdgeInsets.only(top: 15.0),
           child: StyledTextField(
             type: "password",
             placeholder: "Confirm New Password",
             focused: true,
+            compare: newPasswordController.text,
           ),
         ),
         Container(

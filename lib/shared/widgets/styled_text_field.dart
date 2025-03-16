@@ -8,6 +8,7 @@ class StyledTextField extends StatefulWidget {
     this.type = "text", // "text" (default) | "email" | "password" | "number"
     this.focused = false,
     this.compare,
+    this.controller,
     this.onSubmitted,
   });
 
@@ -16,6 +17,7 @@ class StyledTextField extends StatefulWidget {
   final String type;
   final bool focused;
   final String? compare;
+  final TextEditingController? controller;
   final void Function(String)? onSubmitted;
 
   @override
@@ -23,17 +25,17 @@ class StyledTextField extends StatefulWidget {
 }
 
 class _StyledTextFieldState extends State<StyledTextField> {
-  final TextEditingController _textEditingController = TextEditingController();
-
   bool _enabledClearOptions = false;
   bool _matched = false;
   bool _obscureText = false;
+  late final TextEditingController _textEditingController;
 
   @override
   void initState() {
     super.initState();
     _enabledClearOptions = widget.type.toLowerCase() == "password";
     _obscureText = widget.type.toLowerCase() == "password";
+    _textEditingController = widget.controller ?? TextEditingController();
   }
 
   TextInputType _getKeyboardType() {
