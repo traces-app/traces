@@ -58,12 +58,20 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>We need your location for live tracking.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location to provide location-based services.</string>
 	<key>PROJECT_ID</key>
 	<string>traces-1a3f2</string>
 	<key>STORAGE_BUCKET</key>
 	<string>traces-1a3f2.firebasestorage.app</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -82,11 +90,11 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to show your position on the map.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We need your location for live tracking.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to provide location-based services.</string>
+	<key>FirebaseAppDelegateProxyEnabled</key>
+	<false/>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>
