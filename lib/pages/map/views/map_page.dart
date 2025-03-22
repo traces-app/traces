@@ -245,6 +245,7 @@ class _MapPageState extends State<MapPage> {
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:traces/features/map/services/camera_service.dart';
 import 'package:traces/features/map/services/map_service.dart';
 import 'package:traces/features/map/widgets/map.dart';
 import 'package:traces/features/map/widgets/title_bar.dart';

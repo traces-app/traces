@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:traces/features/map/services/camera_service.dart';
 import 'package:traces/features/map/services/internal_location_service.dart';
 import 'package:traces/features/map/services/external_location_service.dart';
 import 'package:traces/features/map/widgets/marker_icon.dart';
@@ -60,6 +61,7 @@ class MapService {
 
   void onMapCreated(GoogleMapController controller) async {
     _mapController = controller;
+    CameraService.setMapController(controller);
 
     // set the map theme
     try {

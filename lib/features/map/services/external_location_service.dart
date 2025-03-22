@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:traces/features/map/services/camera_service.dart';
 import 'package:traces/shared/services/firebase_realtime_database_service.dart';
 
 class ExternalLocationService {
@@ -19,6 +20,12 @@ class ExternalLocationService {
 
         List<Marker> markers = locations.entries.map((entry) {
           final data = entry.value;
+
+          // update camera position
+          if (CameraService.isFollowingLocation()) {
+            CameraService.moveCameraTo(
+                LatLng(data['latitude'], data['longitude']));
+          }
 
           return Marker(
             markerId: MarkerId(entry.key),
