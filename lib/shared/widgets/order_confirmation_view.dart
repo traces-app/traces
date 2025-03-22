@@ -52,7 +52,8 @@ class OrderConfirmationView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
                 child: const Icon(
                   CupertinoIcons.star,
-                  color: Colors.blue,
+                  size: 22,
+                  color: Color.fromRGBO(0, 122, 255, 1),
                 ),
               );
             }),
@@ -86,7 +87,7 @@ class _DateTimeRow extends StatelessWidget {
       children: const [
         Icon(
           CupertinoIcons.calendar,
-          size: 20,
+          size: 19,
           color: Colors.grey,
         ),
         SizedBox(width: 6),
@@ -110,7 +111,7 @@ class _ShipmentDetailText extends StatelessWidget {
         textAlign: TextAlign.center,
         text: const TextSpan(
           style: TextStyle(
-            color: Color(0xFFB0B0B0),
+            color: Color.fromRGBO(255, 255, 255, 0.7),
             fontSize: 18.0,
             height: 1.5,
           ),
