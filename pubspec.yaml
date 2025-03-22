@@ -44,6 +44,7 @@ dependencies:
   permission_handler: ^11.4.0
   firebase_database: ^11.3.4
   widget_to_marker: ^1.0.6
+  maps_curved_line: ^1.0.2
 
 dev_dependencies:
   flutter_test:
