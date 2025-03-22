@@ -49,6 +49,12 @@ class MapService {
         infoWindow: const InfoWindow(title: "Polpithigama"),
         icon: addressIcon,
       ),
+      Marker(
+        markerId: const MarkerId("5"),
+        position: LatLng(37.7749, -122.4194),
+        infoWindow: const InfoWindow(title: "Destination"),
+        icon: addressIcon,
+      ),
     ]);
 
     _markerController.add(_markers);

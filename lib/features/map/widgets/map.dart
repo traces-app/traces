@@ -73,6 +73,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class Map extends StatelessWidget {
   final LatLng initialPosition;
   final Set<Marker> markers;
+  final Set<Polyline> polylines;
   final Function(GoogleMapController) onMapCreated;
   final Function(CameraPosition) onCameraMove;
 
@@ -82,6 +83,7 @@ class Map extends StatelessWidget {
     required this.markers,
     required this.onMapCreated,
     required this.onCameraMove,
+    this.polylines = const {},
   });
 
   @override
@@ -89,6 +91,7 @@ class Map extends StatelessWidget {
     return GoogleMap(
       initialCameraPosition: CameraPosition(target: initialPosition, zoom: 10),
       markers: markers,
+      polylines: polylines,
       onMapCreated: onMapCreated,
       onCameraMove: onCameraMove,
     );
