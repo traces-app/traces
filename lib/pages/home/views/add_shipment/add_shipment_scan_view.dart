@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 import 'package:traces/pages/home/views/add_shipment/add_shipment_manual_view.dart';
+import 'package:traces/pages/home/views/add_shipment/qr_scanner_page.dart';
 
 class AddShipmentScanView extends StatelessWidget {
   const AddShipmentScanView({super.key});
@@ -95,18 +96,32 @@ class QRScanFinder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 310.0,
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.black,
-        borderRadius: BorderRadius.circular(14.0),
-      ),
-      child: const Center(
-        child: Icon(
-          CupertinoIcons.qrcode_viewfinder,
-          size: 180.0,
-          color: Colors.white30,
+    return GestureDetector(
+      onTap: () async {
+        final result = await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const QRScannerPage()),
+        );
+
+        if (result != null && result is String) {
+          final modal =
+              context.findAncestorStateOfType<ModalBottomSheetState>();
+          modal?.navigateTo(AddShipmentManualView(scannedCode: result));
+        }
+      },
+      child: Container(
+        height: 310.0,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(14.0),
+        ),
+        child: const Center(
+          child: Icon(
+            CupertinoIcons.qrcode_viewfinder,
+            size: 180.0,
+            color: Colors.white30,
+          ),
         ),
       ),
     );

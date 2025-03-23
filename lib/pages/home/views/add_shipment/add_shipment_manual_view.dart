@@ -4,7 +4,8 @@ import 'package:traces/pages/home/views/add_shipment/add_shipment_scan_view.dart
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 
 class AddShipmentManualView extends StatefulWidget {
-  const AddShipmentManualView({super.key});
+  final String? scannedCode;
+  const AddShipmentManualView({super.key, this.scannedCode});
 
   @override
   _AddShipmentManualViewState createState() => _AddShipmentManualViewState();
@@ -13,6 +14,16 @@ class AddShipmentManualView extends StatefulWidget {
 class _AddShipmentManualViewState extends State<AddShipmentManualView> {
   final TextEditingController _trackingController = TextEditingController();
   bool _isTrackingEntered = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.scannedCode != null && widget.scannedCode!.isNotEmpty) {
+      _trackingController.text = widget.scannedCode!;
+      _isTrackingEntered = true;
+    }
+  }
 
   void _onTrackingChanged(String value) {
     setState(() {
