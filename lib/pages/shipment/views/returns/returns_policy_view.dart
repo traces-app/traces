@@ -110,33 +110,34 @@ class ReturnsPolicyView extends StatelessWidget {
 
           SizedBox(height: 20),
 
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                final modal =
-                    context.findAncestorStateOfType<ModalBottomSheetState>();
-                modal?.navigateTo(SelectReasonView());
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF0A84FF),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(14),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  final modal =
+                      context.findAncestorStateOfType<ModalBottomSheetState>();
+                  modal?.navigateTo(SelectReasonView());
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF0A84FF),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                  minimumSize: Size(391, 47),
                 ),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-                minimumSize: Size(391, 47),
-              ),
-              child: Text(
-                "Accept and Continue",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.white,
+                child: Text(
+                  "Accept and Continue",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
           ),
-
-          SizedBox(height: 20),
         ],
       ),
     );
