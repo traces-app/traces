@@ -53,7 +53,7 @@ class ModalBottomSheetState extends State<ModalBottomSheet> {
           AnimatedSize(
             duration: Duration(milliseconds: 200),
             child: Container(
-              margin: EdgeInsets.only(bottom: 36.0),
+              margin: EdgeInsets.only(bottom: 26.0),
               width: double.infinity,
               // color: Colors.red, /* (toggle the comment to view the content area) */
               child: AnimatedSwitcher(
