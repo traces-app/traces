@@ -28,7 +28,7 @@ class EligibilityView extends StatelessWidget {
                   ),
                   textAlign: TextAlign.left,
                 ),
-                SizedBox(height: 8.0),
+                SizedBox(height: 3.0),
                 Text(
                   "Start a return in just a few steps. Choose your item, select a return method, and get your refund quickly.",
                   style: TextStyle(
@@ -37,7 +37,7 @@ class EligibilityView extends StatelessWidget {
                     color: Color(0x99FFFFFF),
                   ),
                 ),
-                SizedBox(height: 20.0),
+                SizedBox(height: 30.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -48,14 +48,14 @@ class EligibilityView extends StatelessWidget {
                         "—",
                         style: TextStyle(
                           fontSize: 18,
-                          color: Color(0xFF56ED7E),
+                          color: Color.fromRGBO(86, 237, 126, 0.5),
                         ),
                       ),
                     ),
                     _buildDateSelector(context, "Thu Jan 30", showCheck: true),
                   ],
                 ),
-                SizedBox(height: 24),
+                SizedBox(height: 32.0),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
@@ -69,7 +69,7 @@ class EligibilityView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(14),
                       ),
                       padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                       minimumSize: Size(391, 47),
                     ),
                     child: Text(
@@ -97,19 +97,19 @@ class EligibilityView extends StatelessWidget {
         Icon(
           CupertinoIcons.calendar,
           color: Color.fromRGBO(86, 237, 126, 0.5),
-          size: 18,
+          size: 20,
         ),
         SizedBox(width: 6),
         Text(
           date,
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 17,
             fontWeight: FontWeight.w500,
             color: Color.fromRGBO(86, 237, 126, 0.5),
           ),
         ),
         if (showCheck) ...[
-          SizedBox(width: 6),
+          SizedBox(width: 10.0),
           Icon(CupertinoIcons.check_mark,
               color: Color.fromRGBO(86, 237, 126, 0.5), size: 18),
         ]
