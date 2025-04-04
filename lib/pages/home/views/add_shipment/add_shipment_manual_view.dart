@@ -20,7 +20,6 @@ class _AddShipmentManualViewState extends State<AddShipmentManualView> {
   void initState() {
     super.initState();
 
-    print("scannedtext passed: ${widget.scannedText}");
     if (widget.scannedText != null && widget.scannedText!.isNotEmpty) {
       _trackingController.text = widget.scannedText!;
       _isTrackingEntered = true;
