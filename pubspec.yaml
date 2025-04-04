@@ -49,6 +49,7 @@ dependencies:
   flutter_local_notifications: ^19.0.0
   shared_preferences: ^2.5.2
   url_launcher: ^6.2.5
+  qr_code_scanner_plus: ^2.0.10+1
 
 dev_dependencies:
   flutter_test:
