@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:traces/pages/shipment/views/details/detailed_view.dart';
+import 'package:traces/pages/shipment/views/details/overview_view.dart';
 import 'package:traces/pages/shipment/views/options/options_view.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 
@@ -64,19 +66,9 @@ class _ShipmentDetailsPageState extends State<ShipmentDetailsPage> {
                 _current = index;
               });
             },
-            children: [
-              Container(
-                color: Colors.red.withOpacity(0.3),
-                child: Center(
-                  child: Text('Overview'),
-                ),
-              ),
-              Container(
-                color: Colors.blue.withOpacity(0.3),
-                child: Center(
-                  child: Text('More Details'),
-                ),
-              ),
+            children: const [
+              OverviewView(),
+              DetailedView(),
             ],
           ),
           GradientBottomOverlay(),
