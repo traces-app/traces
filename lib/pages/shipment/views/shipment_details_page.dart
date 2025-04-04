@@ -129,8 +129,8 @@ class GradientBottomOverlay extends StatelessWidget {
                 1.0,
               ], // Evenly distributed transition points
               colors: [
-                Colors.black.withOpacity(0.9), // Strong black at bottom
-                Colors.black.withOpacity(0.2), // Midway fade
+                Colors.black.withOpacity(1.0), // Strong black at bottom
+                Colors.black.withOpacity(0.8), // Midway fade
                 Colors.transparent, // Fully transparent at top
               ],
             ),
