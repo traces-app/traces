@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 import 'package:traces/pages/home/views/add_shipment/add_shipment_manual_view.dart';
-import 'package:traces/pages/home/views/add_shipment/qr_scanner_page.dart';
 
 class AddShipmentScanView extends StatelessWidget {
   const AddShipmentScanView({super.key});
@@ -12,11 +11,12 @@ class AddShipmentScanView extends StatelessWidget {
     return const Stack(
       children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+          padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 6.0),
               TitleWithInstruction(),
               SizedBox(height: 10),
               QRScanFinder(),
@@ -24,7 +24,8 @@ class AddShipmentScanView extends StatelessWidget {
           ),
         ),
         Positioned(
-          right: 8,
+          right: 3.0,
+          top: 3.0,
           child: BackButtonIconOnly(),
         ),
       ],
@@ -33,7 +34,7 @@ class AddShipmentScanView extends StatelessWidget {
 }
 
 class BackButtonIconOnly extends StatelessWidget {
-  const BackButtonIconOnly();
+  const BackButtonIconOnly({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +47,7 @@ class BackButtonIconOnly extends StatelessWidget {
           color: Colors.grey[900],
         ),
         child: const Icon(
-          CupertinoIcons.arrow_turn_up_left,
+          CupertinoIcons.arrow_uturn_left,
           color: Colors.blue,
         ),
       ),
@@ -59,7 +60,7 @@ class BackButtonIconOnly extends StatelessWidget {
 }
 
 class TitleWithInstruction extends StatelessWidget {
-  const TitleWithInstruction();
+  const TitleWithInstruction({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +76,11 @@ class TitleWithInstruction extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        SizedBox(height: 8),
+        SizedBox(height: 2.5),
         Text(
           "Provide your shipment details to link it to your account. You can enter the information manually or quickly scan the QR code for faster input.",
           style: TextStyle(
-            fontSize: 17,
+            fontSize: 15.5,
             fontWeight: FontWeight.w400,
             color: Color.fromRGBO(255, 255, 255, 0.6),
             height: 1.4,
@@ -92,25 +93,14 @@ class TitleWithInstruction extends StatelessWidget {
 }
 
 class QRScanFinder extends StatelessWidget {
-  const QRScanFinder();
+  const QRScanFinder({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () async {
-        final result = await Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const QRScannerPage()),
-        );
-
-        if (result != null && result is String) {
-          final modal =
-              context.findAncestorStateOfType<ModalBottomSheetState>();
-          modal?.navigateTo(AddShipmentManualView(scannedCode: result));
-        }
-      },
+      onTap: () {},
       child: Container(
-        height: 310.0,
+        height: 280.0,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.black,
