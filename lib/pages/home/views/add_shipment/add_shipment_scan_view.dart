@@ -110,6 +110,7 @@ class _QRScanFinderState extends State<QRScanFinder> {
   void initState() {
     super.initState();
     _requestCameraPermission();
+    scannedText = null;
   }
 
   @override
@@ -122,16 +123,29 @@ class _QRScanFinderState extends State<QRScanFinder> {
         color: Colors.black,
         borderRadius: BorderRadius.circular(14.0),
       ),
-      child: QRView(
-        key: qrKey,
-        onQRViewCreated: _onQRViewCreated,
-        overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
-          borderRadius: 10,
-          borderLength: 30,
-          borderWidth: 10,
-          cutOutSize: 180,
-        ),
+      child: Stack(
+        children: [
+          QRView(
+              key: qrKey,
+              onQRViewCreated: _onQRViewCreated,
+              overlay: QrScannerOverlayShape(
+                borderColor:
+                    scannedText == null ? Colors.red : Colors.transparent,
+                borderRadius: 10,
+                borderLength: 30,
+                borderWidth: 10,
+                cutOutSize: 180,
+              )),
+          if (scannedText != null)
+            Positioned.fill(
+              child: Container(
+                color: Colors.black.withOpacity(0.8),
+                height: double.infinity,
+                width: double.infinity,
+                child: CupertinoActivityIndicator(),
+              ),
+            )
+        ],
       ),
     );
   }
@@ -145,11 +159,22 @@ class _QRScanFinderState extends State<QRScanFinder> {
 
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
-    controller.scannedDataStream.listen((scanData) {
+    controller.scannedDataStream.listen((scanData) async {
       setState(() {
         scannedText = scanData.code;
-        print(scannedText);
       });
+
+      if (scannedText != null) {
+        await Future.delayed(Duration(seconds: 2));
+        if (!mounted) {
+          return; // Ensure the widget is still mounted before accessing context
+        }
+
+        final modal = context.findAncestorStateOfType<ModalBottomSheetState>();
+        modal?.navigateTo(AddShipmentManualView(
+          scannedText: scannedText,
+        ));
+      }
     });
   }
 }

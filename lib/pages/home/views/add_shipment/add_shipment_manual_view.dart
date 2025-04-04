@@ -4,10 +4,11 @@ import 'package:traces/pages/home/views/add_shipment/add_shipment_scan_view.dart
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 
 class AddShipmentManualView extends StatefulWidget {
-  final String? scannedCode;
-  const AddShipmentManualView({super.key, this.scannedCode});
+  const AddShipmentManualView({super.key, this.scannedText});
+  final String? scannedText;
 
   @override
+  // ignore: library_private_types_in_public_api
   _AddShipmentManualViewState createState() => _AddShipmentManualViewState();
 }
 
@@ -19,8 +20,9 @@ class _AddShipmentManualViewState extends State<AddShipmentManualView> {
   void initState() {
     super.initState();
 
-    if (widget.scannedCode != null && widget.scannedCode!.isNotEmpty) {
-      _trackingController.text = widget.scannedCode!;
+    print("scannedtext passed: ${widget.scannedText}");
+    if (widget.scannedText != null && widget.scannedText!.isNotEmpty) {
+      _trackingController.text = widget.scannedText!;
       _isTrackingEntered = true;
     }
   }
