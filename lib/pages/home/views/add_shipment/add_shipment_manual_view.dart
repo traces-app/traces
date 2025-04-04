@@ -36,13 +36,14 @@ class _AddShipmentManualViewState extends State<AddShipmentManualView> {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 20.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 6.0),
               const TitleAndInstruction(),
-              const SizedBox(height: 16.0),
+              const SizedBox(height: 25.0),
               TrackingInputField(
                 controller: _trackingController,
                 onChanged: _onTrackingChanged,
@@ -52,13 +53,14 @@ class _AddShipmentManualViewState extends State<AddShipmentManualView> {
                   _onTrackingChanged("");
                 },
               ),
-              const SizedBox(height: 14.0),
+              const SizedBox(height: 19.0),
               AddShipmentButton(isEnabled: _isTrackingEntered),
             ],
           ),
         ),
         const Positioned(
-          right: 8,
+          right: 3.0,
+          top: 3.0,
           child: QRCodeButton(),
         ),
       ],
@@ -68,7 +70,7 @@ class _AddShipmentManualViewState extends State<AddShipmentManualView> {
 
 //TITLE WITH INSTRUCTIONS
 class TitleAndInstruction extends StatelessWidget {
-  const TitleAndInstruction();
+  const TitleAndInstruction({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -83,14 +85,12 @@ class TitleAndInstruction extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        SizedBox(height: 8),
+        SizedBox(height: 2.5),
         Text(
           "Provide your shipment details to link it to your account. You can enter the information manually or quickly scan the QR code for faster input.",
           style: TextStyle(
-            fontSize: 15,
+            fontSize: 15.5,
             fontWeight: FontWeight.w400,
-            height: 1.4,
-            letterSpacing: 1,
             color: Color.fromRGBO(255, 255, 255, 0.6),
           ),
         ),
@@ -101,7 +101,7 @@ class TitleAndInstruction extends StatelessWidget {
 
 // QR CODE BUTTON
 class QRCodeButton extends StatelessWidget {
-  const QRCodeButton();
+  const QRCodeButton({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -135,6 +135,7 @@ class TrackingInputField extends StatelessWidget {
   final bool isTrackingEntered;
 
   const TrackingInputField({
+    super.key,
     required this.controller,
     required this.onChanged,
     required this.onClear,
@@ -170,7 +171,7 @@ class TrackingInputField extends StatelessWidget {
         suffixIcon: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            if (isTrackingEntered)
+            if (controller.text == "code")
               const Padding(
                 padding: EdgeInsets.only(right: 0),
                 child: Icon(
@@ -179,14 +180,15 @@ class TrackingInputField extends StatelessWidget {
                   size: 20,
                 ),
               ),
-            IconButton(
-              icon: const Icon(
-                CupertinoIcons.xmark_circle_fill,
-                color: Colors.grey,
-                size: 20,
+            if (isTrackingEntered)
+              IconButton(
+                icon: const Icon(
+                  CupertinoIcons.xmark_circle_fill,
+                  color: Colors.grey,
+                  size: 20,
+                ),
+                onPressed: onClear,
               ),
-              onPressed: onClear,
-            ),
           ],
         ),
       ),
@@ -198,7 +200,7 @@ class TrackingInputField extends StatelessWidget {
 class AddShipmentButton extends StatelessWidget {
   final bool isEnabled;
 
-  const AddShipmentButton({required this.isEnabled});
+  const AddShipmentButton({super.key, required this.isEnabled});
 
   @override
   Widget build(BuildContext context) {
