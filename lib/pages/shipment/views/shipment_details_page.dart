@@ -1,59 +1,149 @@
 import 'package:flutter/material.dart';
-import 'package:traces/shared/widgets/shipment%20details/shipment_deatils_page_detailed.dart';
-import '../../../shared/widgets/shipment details/shipment_details_page_initial.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:traces/pages/shipment/views/options/options_view.dart';
+import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 
 class ShipmentDetailsPage extends StatefulWidget {
-  @override
-  _ShipmentDetailsPageState createState() => _ShipmentDetailsPageState();
-
   const ShipmentDetailsPage({super.key});
+
+  @override
+  State<ShipmentDetailsPage> createState() => _ShipmentDetailsPageState();
 }
 
 class _ShipmentDetailsPageState extends State<ShipmentDetailsPage> {
-  final PageController _controller = PageController();
-  int _currentIndex = 0;
+  final PageController _pageController = PageController();
+  int _current = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      backgroundColor: Colors.black,
+      appBar: CupertinoNavigationBar(
+        padding: EdgeInsetsDirectional.all(0.0),
+        backgroundColor: Colors.black,
+        middle: Text(
+          "TX 768 431",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18.0,
+          ),
+        ),
+        leading: Navigator.of(context).canPop()
+            ? CupertinoNavigationBarBackButton(
+                color: Color(0xFF0A84FF),
+                previousPageTitle: "Back",
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              )
+            : null,
+        trailing: IconButton(
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => ModalBottomSheet(
+                /* content starts here */
+                child: OptionsView(),
+                /* content ends here */
+              ),
+            );
+          },
+          icon: Icon(
+            CupertinoIcons.ellipsis_circle,
+            size: 24.0,
+            color: Color(0xFF0A84FF),
+          ),
+        ),
+      ),
+      body: Stack(
         children: [
-          Expanded(
-            child: PageView(
-              controller: _controller,
-              onPageChanged: (index) {
-                setState(() {
-                  _currentIndex = index;
-                });
-              },
-              children: [
-                ShipmentDetailsPageInitial(
-                  orderId: "TX 768 431",
-                  shipmentStatus: "in transit",
+          PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _current = index;
+              });
+            },
+            children: [
+              Container(
+                color: Colors.red.withOpacity(0.3),
+                child: Center(
+                  child: Text('Overview'),
                 ),
-                ShipmentDeatilsPageDetailed(
-                  orderId: "TX 768 431",
-                  shipmentStatus: "in transit",
+              ),
+              Container(
+                color: Colors.blue.withOpacity(0.3),
+                child: Center(
+                  child: Text('More Details'),
                 ),
+              ),
+            ],
+          ),
+          GradientBottomOverlay(),
+          SwipeIndicator(current: _current),
+        ],
+      ),
+    );
+  }
+}
+
+class SwipeIndicator extends StatelessWidget {
+  final int current;
+
+  const SwipeIndicator({super.key, this.current = 0});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 70.0,
+      right: 0.0,
+      left: 0.0,
+      child: Row(
+        spacing: 7.0,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(2, (index) {
+          final isActive = index == current;
+          return Container(
+            width: isActive ? 8.0 : 7.0,
+            height: isActive ? 8.0 : 7.0,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(isActive ? 0.8 : 0.3),
+              shape: BoxShape.circle,
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class GradientBottomOverlay extends StatelessWidget {
+  const GradientBottomOverlay({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: IgnorePointer(
+        child: Container(
+          height: 300.0,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              stops: const [
+                0.0,
+                0.5,
+                1.0,
+              ], // Evenly distributed transition points
+              colors: [
+                Colors.black.withOpacity(0.9), // Strong black at bottom
+                Colors.black.withOpacity(0.2), // Midway fade
+                Colors.transparent, // Fully transparent at top
               ],
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: List.generate(2, (index) {
-              return Container(
-                margin: EdgeInsets.all(5),
-                width: 8,
-                height: 8,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: _currentIndex == index ? Colors.white : Colors.grey,
-                ),
-              );
-            }),
-          ),
-          SizedBox(height: 20),
-        ],
+        ),
       ),
     );
   }
