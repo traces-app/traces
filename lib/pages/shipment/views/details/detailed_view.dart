@@ -19,10 +19,10 @@ class _DetailedViewState extends State<DetailedView> {
             top: 30.0,
             left: 15.0,
             right: 15.0,
-            bottom: 100.0,
+            bottom: 250.0,
           ),
           child: Column(
-            spacing: 16.0,
+            spacing: 18.0,
             children: [
               GroupSection(
                 title: "Shipment Overview",
@@ -162,9 +162,9 @@ class GroupSection extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 15.0, bottom: 16.0),
+          padding: const EdgeInsets.only(top: 15.0),
           child: Column(
-            spacing: 10.0,
+            spacing: 11.0,
             children: children,
           ),
         ),
