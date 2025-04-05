@@ -8,6 +8,8 @@ class AppIcons {
   static const String path = 'assets/icons/path.svg';
   static const String close = 'assets/icons/close.svg';
   static const String arrowForward = 'assets/icons/arrow-forward.svg';
+  static const String plus = 'assets/icons/add.svg';
+  static const String flag = 'assets/icons/flag.svg';
 
   static const String window = 'assets/icons/window.svg';
 

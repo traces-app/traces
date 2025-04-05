@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:traces/shared/widgets/status_icon.dart';
 
 class DetailedView extends StatefulWidget {
   const DetailedView({super.key});
@@ -27,7 +28,11 @@ class _DetailedViewState extends State<DetailedView> {
               GroupSection(
                 title: "Shipment Overview",
                 children: const [
-                  GroupItem(label: "Status"),
+                  GroupItem(
+                    type: "transit",
+                    label: "Status",
+                    value: "In Transit",
+                  ),
                   GroupItem(
                     label: "Shipment ID",
                     value: "TX 768 431",
@@ -224,7 +229,7 @@ class GroupItem extends StatelessWidget {
                 ),
               ],
             )
-          else
+          else if (type == "text")
             Flexible(
               child: Text(
                 value!,
@@ -238,6 +243,25 @@ class GroupItem extends StatelessWidget {
                       : Colors.white.withOpacity(0.75),
                 ),
               ),
+            )
+          else if (type != "text" && type != "date")
+            Row(
+              spacing: 10.0,
+              children: [
+                StatusIcon(type: type),
+                Text(
+                  value!,
+                  textAlign: TextAlign.right,
+                  style: TextStyle(
+                    fontSize: 17.5,
+                    letterSpacing: 0.15,
+                    fontWeight: FontWeight.w500,
+                    color: highlight
+                        ? Color(0xFF0A84FF).withOpacity(0.9)
+                        : Colors.white.withOpacity(0.75),
+                  ),
+                ),
+              ],
             )
       ],
     );
