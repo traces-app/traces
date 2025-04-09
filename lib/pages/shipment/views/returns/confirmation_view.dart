@@ -4,7 +4,6 @@ import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
 import 'package:traces/core/utils/app_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-
 class ConfirmationView extends StatelessWidget {
   const ConfirmationView({super.key});
 
