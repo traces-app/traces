@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:traces/core/models/status.dart';
 import 'package:traces/shared/widgets/status_icon.dart';
 
 class DetailedView extends StatefulWidget {
@@ -248,7 +249,7 @@ class GroupItem extends StatelessWidget {
             Row(
               spacing: 10.0,
               children: [
-                StatusIcon(type: type),
+                StatusIcon(type: Status.inTransit),
                 Text(
                   value!,
                   textAlign: TextAlign.right,

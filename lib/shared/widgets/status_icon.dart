@@ -3,29 +3,29 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:traces/core/models/status.dart';
 
 class StatusIcon extends StatelessWidget {
-  final String type;
-  final double _defaultIconSize = 12.0;
+  final Status type;
+  final double? size;
 
-  const StatusIcon({super.key, required this.type});
+  const StatusIcon({
+    super.key,
+    required this.type,
+    this.size = 12.0,
+  });
 
   @override
   Widget build(BuildContext context) {
-    Status status = _getStatusTypeInfo(type);
-
     return Container(
-      width: 25.0,
-      height: 25.0,
-      padding: EdgeInsets.all(3.0),
+      padding: EdgeInsets.all(8.0),
       decoration: BoxDecoration(
-        color: status.background,
+        color: type.background,
         shape: BoxShape.circle,
       ),
       child: Center(
         child: SvgPicture.asset(
-          status.iconPath!,
-          height: _defaultIconSize,
+          type.iconPath!,
+          height: size,
           colorFilter: ColorFilter.mode(
-            status.color,
+            type.color,
             BlendMode.srcIn,
           ),
         ),
@@ -33,6 +33,7 @@ class StatusIcon extends StatelessWidget {
     );
   }
 
+  /*
   Status _getStatusTypeInfo(String type) {
     switch (type) {
       case "transit":
@@ -49,4 +50,5 @@ class StatusIcon extends StatelessWidget {
         throw ArgumentError("Invalid status type: $type");
     }
   }
+*/
 }
