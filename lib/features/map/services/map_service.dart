@@ -15,8 +15,6 @@ class MapService {
   final _markerController = StreamController<Set<Marker>>.broadcast();
 
   final FirebaseService _firebaseService = FirebaseService();
-  final InternalLocationService _internalLocationService =
-      InternalLocationService();
   final ExternalLocationService _externalLocationService =
       ExternalLocationService();
 
@@ -33,6 +31,7 @@ class MapService {
   }
 
   void _loadMarkers() async {
+    // TODO: Load the markers here
     BitmapDescriptor customIcon = await MarkerIcon.major();
     BitmapDescriptor outIcon = await MarkerIcon.out();
     BitmapDescriptor addressIcon = await MarkerIcon.address();
