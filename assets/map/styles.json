@@ -172,5 +172,17 @@
                 "color": "#f3d19c"
             }
         ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#14146E"
+            },
+            {
+                "visibility": "on"
+            }
+        ]
     }
 ]
