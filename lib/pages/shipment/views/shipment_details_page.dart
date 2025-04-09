@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:traces/pages/shipment/views/details/detailed_view.dart';
+import 'package:traces/pages/shipment/views/details/overview_view.dart';
 import 'package:traces/pages/shipment/views/options/options_view.dart';
 import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
-import 'package:traces/shared/widgets/order_confirmation_view.dart';
 
 class ShipmentDetailsPage extends StatefulWidget {
   const ShipmentDetailsPage({super.key});
@@ -12,15 +13,18 @@ class ShipmentDetailsPage extends StatefulWidget {
 }
 
 class _ShipmentDetailsPageState extends State<ShipmentDetailsPage> {
+  final PageController _pageController = PageController();
+  int _current = 0;
+
   @override
   Widget build(BuildContext context) {
-    // TODO: Start replacing content from here
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: CupertinoNavigationBar(
         padding: EdgeInsetsDirectional.all(0.0),
         backgroundColor: Colors.black,
         middle: Text(
-          "Shipment Details",
+          "TX 768 431",
           style: TextStyle(
             color: Colors.white,
             fontSize: 18.0,
@@ -53,21 +57,83 @@ class _ShipmentDetailsPageState extends State<ShipmentDetailsPage> {
           ),
         ),
       ),
-      backgroundColor: Colors.black,
-      body: Container(
-        color: Colors.black,
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) => ModalBottomSheet(
-                  showCloseButton: true,
-                  child: OrderConfirmationView(),
-                ),
-              );
+      body: Stack(
+        children: [
+          PageView(
+            controller: _pageController,
+            onPageChanged: (index) {
+              setState(() {
+                _current = index;
+              });
             },
-            child: Text("Receive Order Confirmation (Test)"),
+            children: const [
+              OverviewView(),
+              DetailedView(),
+            ],
+          ),
+          GradientBottomOverlay(),
+          SwipeIndicator(current: _current),
+        ],
+      ),
+    );
+  }
+}
+
+class SwipeIndicator extends StatelessWidget {
+  final int current;
+
+  const SwipeIndicator({super.key, this.current = 0});
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      bottom: 70.0,
+      right: 0.0,
+      left: 0.0,
+      child: Row(
+        spacing: 7.0,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(2, (index) {
+          final isActive = index == current;
+          return Container(
+            width: isActive ? 8.0 : 7.0,
+            height: isActive ? 8.0 : 7.0,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(isActive ? 0.8 : 0.3),
+              shape: BoxShape.circle,
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class GradientBottomOverlay extends StatelessWidget {
+  const GradientBottomOverlay({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: IgnorePointer(
+        child: Container(
+          height: 300.0,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              stops: const [
+                0.0,
+                0.5,
+                1.0,
+              ], // Evenly distributed transition points
+              colors: [
+                Colors.black.withOpacity(1.0), // Strong black at bottom
+                Colors.black.withOpacity(0.8), // Midway fade
+                Colors.transparent, // Fully transparent at top
+              ],
+            ),
           ),
         ),
       ),
