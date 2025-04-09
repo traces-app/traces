@@ -50,6 +50,8 @@ dependencies:
   shared_preferences: ^2.5.2
   url_launcher: ^6.2.5
   qr_code_scanner_plus: ^2.0.10+1
+  widget_to_marker: ^1.0.6
+  maps_curved_line: ^1.0.2
 
 dev_dependencies:
   flutter_test:
