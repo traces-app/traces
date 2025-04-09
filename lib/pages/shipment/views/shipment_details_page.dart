@@ -43,6 +43,7 @@ class _ShipmentDetailsPageState extends State<ShipmentDetailsPage> {
           onPressed: () {
             showModalBottomSheet(
               context: context,
+              isScrollControlled: true,
               builder: (context) => ModalBottomSheet(
                 /* content starts here */
                 child: OptionsView(),

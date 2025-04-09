@@ -25,7 +25,8 @@ class ReturnsPolicyView extends StatelessWidget {
 
           SizedBox(height: 10.0),
 
-          Expanded(
+          SizedBox(
+            height: 450.0,
             child: Padding(
               padding: const EdgeInsets.only(left: 25.0, right: 12.0),
               child: ScrollbarTheme(
