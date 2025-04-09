@@ -20,6 +20,14 @@ class _RootWidgetState extends State<RootWidget> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+              textScaler:
+                  TextScaler.noScaling), // Disables text scaling globally
+          child: child!,
+        );
+      },
       debugShowCheckedModeBanner: false,
       title: 'Traces',
       theme: ThemeData.dark(),
