@@ -1,9 +1,14 @@
 import 'dart:async';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:traces/core/services/authentication_service.dart';
 import 'package:traces/pages/authentication/authentication.dart';
 import 'package:traces/pages/authentication/cubit/activity_indicator_cubit.dart';
+import 'package:traces/pages/authentication/cubit/authentication_form_notifier.dart';
+import 'package:traces/pages/home/layouts/layout.dart';
 import 'package:traces/shared/widgets/styled_text_field.dart';
 
 class PasswordPage extends StatefulWidget {
@@ -16,6 +21,8 @@ class PasswordPage extends StatefulWidget {
 class _PasswordPageState extends State<PasswordPage> {
   @override
   Widget build(BuildContext context) {
+    final authState = Provider.of<AuthState>(context);
+
     return AuthenticationLayout(
       children: [
         const Align(
@@ -27,7 +34,6 @@ class _PasswordPageState extends State<PasswordPage> {
           ),
         ),
         const SizedBox(height: 20),
-
         BlocBuilder<ActivityIndicatorCubit, bool>(builder: (context, state) {
           return StyledTextField(
             placeholder: "Password",
@@ -46,6 +52,9 @@ class _PasswordPageState extends State<PasswordPage> {
                   );
                 },
               );
+            },
+            onValueChange: (value) {
+              authState.updatePassword(value);
             },
           );
         }),
@@ -72,20 +81,34 @@ class _PasswordPageState extends State<PasswordPage> {
                   "Sign In",
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
                 ),
-                onPressed: () {
+                onPressed: () async {
                   context.read<ActivityIndicatorCubit>().toggle();
+                  // authenticate user
+                  final email = authState.email;
+                  final password = authState.password;
+
+                  final success =
+                      await AuthenticationService(Dio()).login(email, password);
+
                   Timer(
                     const Duration(seconds: 3),
                     () {
-                      context.read<ActivityIndicatorCubit>().toggle();
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                          builder: (context) => const PoliciesPage(),
-                        ),
-                      );
+                      if (mounted) {
+                        context.read<ActivityIndicatorCubit>().toggle();
+                      }
                     },
                   );
+
+                  if (success) {
+                    Navigator.pushAndRemoveUntil(
+                      // ignore: use_build_context_synchronously
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const BaseLayout(),
+                      ),
+                      (route) => false, // Remove all routes
+                    );
+                  }
                 },
               ),
             );

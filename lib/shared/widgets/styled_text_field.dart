@@ -10,6 +10,7 @@ class StyledTextField extends StatefulWidget {
     this.compare,
     this.controller,
     this.onSubmitted,
+    this.onValueChange,
   });
 
   // required initial state
@@ -19,6 +20,7 @@ class StyledTextField extends StatefulWidget {
   final String? compare;
   final TextEditingController? controller;
   final void Function(String)? onSubmitted;
+  final void Function(String)? onValueChange;
 
   @override
   State<StyledTextField> createState() => _StyledTextFieldState();
@@ -224,6 +226,7 @@ class _StyledTextFieldState extends State<StyledTextField> {
                     ),
                     onChanged: (String value) {
                       handleOnChange(value);
+                      widget.onValueChange!(value);
                     },
                     controller: _textEditingController),
               ],

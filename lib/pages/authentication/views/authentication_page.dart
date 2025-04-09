@@ -1,13 +1,18 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
+import 'package:traces/core/services/authentication_service.dart';
 import 'package:traces/core/utils/app_icons.dart';
 import 'package:traces/pages/authentication/authentication.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:traces/pages/authentication/cubit/activity_indicator_cubit.dart';
+import 'package:traces/pages/authentication/cubit/authentication_form_notifier.dart';
+import 'package:traces/pages/home/layouts/layout.dart';
 import 'package:traces/shared/widgets/styled_text_field.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -24,6 +29,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final authState = Provider.of<AuthState>(context);
+
     return AuthenticationLayout(
       children: [
         const Padding(
@@ -44,6 +51,10 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
               type: "email",
               placeholder: "user@example.com",
               focused: true,
+              onValueChange: (value) {
+                // update the value in the bloc
+                authState.updateEmailAddress(value);
+              },
               onSubmitted: (value) {
                 context.read<ActivityIndicatorCubit>().toggle();
                 Timer(
