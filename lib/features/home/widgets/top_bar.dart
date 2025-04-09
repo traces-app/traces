@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:traces/features/home/widgets/filter_option.dart';
 import 'package:traces/pages/home/views/add_shipment/add_shipment_manual_view.dart';
 import 'package:traces/pages/search/views/search_page.dart';
-import 'package:traces/shared/widgets/modal_bottom_sheet.dart';
+import 'package:traces/shared/widgets/modal_bottom_sheet.dart'
+    as ModalBottomSheetWrapper;
 import 'package:traces/shared/widgets/search_input_field.dart';
 
 class TopBar extends StatefulWidget implements PreferredSizeWidget {
@@ -93,12 +95,13 @@ class ActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showModalBottomSheet(
+        showMaterialModalBottomSheet(
           context: context,
-          builder: (context) => ModalBottomSheet(
-            /* content starts here */
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10.0)),
+          ),
+          builder: (context) => ModalBottomSheetWrapper.ModalBottomSheet(
             child: AddShipmentManualView(),
-            /* content ends here */
           ),
         );
       },

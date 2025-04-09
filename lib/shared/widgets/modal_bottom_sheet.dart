@@ -42,7 +42,7 @@ class ModalBottomSheetState extends State<ModalBottomSheet> {
       decoration: BoxDecoration(
         color: Color(0xFF121212),
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(8.0),
+          topLeft: Radius.circular(10.0),
           topRight: Radius.circular(10.0),
         ),
       ),
@@ -53,7 +53,7 @@ class ModalBottomSheetState extends State<ModalBottomSheet> {
           AnimatedSize(
             duration: Duration(milliseconds: 200),
             child: Container(
-              margin: EdgeInsets.only(bottom: 36.0),
+              margin: EdgeInsets.only(bottom: 26.0),
               width: double.infinity,
               // color: Colors.red, /* (toggle the comment to view the content area) */
               child: AnimatedSwitcher(
@@ -61,7 +61,12 @@ class ModalBottomSheetState extends State<ModalBottomSheet> {
                 transitionBuilder: (child, animation) {
                   return FadeTransition(
                     opacity: animation,
-                    child: child,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom,
+                      ),
+                      child: child,
+                    ),
                   );
                 },
                 child: _current,
