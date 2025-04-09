@@ -34,6 +34,7 @@ class MapService {
 
   void _loadMarkers() async {
     BitmapDescriptor customIcon = await MarkerIcon.major();
+    BitmapDescriptor outIcon = await MarkerIcon.out();
     BitmapDescriptor addressIcon = await MarkerIcon.address();
 
     _markers.addAll([
@@ -54,6 +55,18 @@ class MapService {
         position: LatLng(37.7749, -122.4194),
         infoWindow: const InfoWindow(title: "Destination"),
         icon: addressIcon,
+      ),
+      Marker(
+        markerId: const MarkerId("6"),
+        position: LatLng(37, -122),
+        infoWindow: const InfoWindow(title: "Destination"),
+        icon: customIcon,
+      ),
+      Marker(
+        markerId: const MarkerId("7"),
+        position: LatLng(39, -122),
+        infoWindow: const InfoWindow(title: "Destination"),
+        icon: outIcon,
       ),
     ]);
 

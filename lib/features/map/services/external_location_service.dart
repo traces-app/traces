@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:traces/features/map/services/camera_service.dart';
+import 'package:traces/features/map/widgets/marker_icon.dart';
 import 'package:traces/shared/services/firebase_realtime_database_service.dart';
 
 class ExternalLocationService {
@@ -9,10 +13,31 @@ class ExternalLocationService {
       FirebaseRealtimeDatabaseService();
       */
 
+  double _calculateBearing(LatLng start, LatLng end) {
+    double lat1 = _degToRad(start.latitude);
+    double lon1 = _degToRad(start.longitude);
+    double lat2 = _degToRad(end.latitude);
+    double lon2 = _degToRad(end.longitude);
+
+    double dLon = lon2 - lon1;
+
+    double y = sin(dLon) * cos(lat2);
+    double x = cos(lat1) * sin(lat2) - sin(lat1) * cos(lat2) * cos(dLon);
+
+    double bearing = atan2(y, x);
+    bearing = _radToDeg(bearing);
+    return (bearing + 360) % 360; // Normalize to 0-360
+  }
+
+  double _degToRad(double deg) => deg * (pi / 180.0);
+  double _radToDeg(double rad) => rad * (180.0 / pi);
+
   /// Fetches location data from Firebase and listens for real-time changes.
-  void fetchRealtimeLocation(Function(List<Marker>) updateMarkers) {
+  void fetchRealtimeLocation(Function(List<Marker>) updateMarkers) async {
     DatabaseReference ref =
         FirebaseRealtimeDatabaseService.listenToData('locations');
+
+    BitmapDescriptor navigatorMarker = await MarkerIcon.navigator();
 
     ref.onValue.listen((DatabaseEvent event) {
       if (event.snapshot.value != null) {
@@ -30,9 +55,13 @@ class ExternalLocationService {
 
           return Marker(
             markerId: MarkerId(entry.key),
+            rotation: (_calculateBearing(LatLng(37.7749, -122.4194),
+                    LatLng(data['latitude'], data['longitude']))) %
+                360,
             position: LatLng(data['latitude'], data['longitude']),
             infoWindow: InfoWindow(title: data['title'] ?? 'Driver Location'),
-            icon: BitmapDescriptor.defaultMarker,
+            icon: navigatorMarker,
+            anchor: Offset(0.5, 0.5),
           );
         }).toList();
 
